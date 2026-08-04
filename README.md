@@ -30,25 +30,27 @@ python3 -m http.server 4173
   "Coach Riwan", `sameAs` → TikTok, 6 `VideoObject`s per language, FAQ schema
   mirroring on-page text exactly, hreflang en/fi/x-default, canonical → twr.coach.
 
-## LAUNCH RUNBOOK (twr.coach)
+## DOMAIN STATUS (launched 2026-08-04)
 
-All page metadata (canonical, hreflang, og:url, schema, sitemap, robots) already
-points at twr.coach. Remaining steps, in order:
+twr.coach is live via a **Cloudflare proxy** in front of the GitHub Pages
+origin (Pages itself has no custom domain configured — the proxy rewrites
+host/path). All paths verified serving: `/`, `/fi/`, assets, robots, sitemap,
+404s. `noindex` removed from both pages the same day.
 
-1. **DNS** at the registrar for `twr.coach`: four A records
-   `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`
-   (+ AAAA `2606:50c0:8000::153` …`8003::153` if IPv6 wanted). Optional
-   `www` CNAME → `vectorout.github.io`.
-2. **CNAME file**: `echo "twr.coach" > CNAME`, commit, push. (Do this only
-   after DNS — earlier and the github.io preview starts redirecting nowhere.)
-3. Repo Settings → Pages → verify custom domain shows twr.coach, tick
-   **Enforce HTTPS** once the cert issues (~minutes).
-4. Remove `<meta name="robots" content="noindex">` from **both**
-   `index.html` and `fi/index.html`.
-5. **Google Search Console**: add twr.coach (domain property), submit
+Caveats of the proxy setup:
+- Content updates pass through Cloudflare's cache (`max-age=0, must-revalidate`
+  → normally instant; if a deploy looks stale, purge cache in Cloudflare).
+- Optional cleaner alternative: set the custom domain in GitHub Pages
+  (creates CNAME file) + Cloudflare DNS-only CNAME → `vectorout.github.io`.
+  Only do this deliberately — it changes how the proxy must be configured.
+
+## POST-LAUNCH SEO
+
+1. **Google Search Console**: add twr.coach (domain property), submit
    `https://twr.coach/sitemap.xml`.
-6. Google **Business Profile** for "Train With Riwan" (service-area business,
+2. Google **Business Profile** for "Train With Riwan" (service-area business,
    Helsinki) — biggest local-pack lever for "jalkapallovalmentaja helsinki".
+3. Link twr.coach in the TikTok bio (entity loop: site ⇄ TikTok).
 
 ## Remaining checklist
 

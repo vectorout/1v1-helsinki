@@ -144,6 +144,9 @@
   }
 
   gsap.registerPlugin(ScrollTrigger);
+  /* don't re-measure pins when the mobile keyboard opens/closes — that
+     resize mid-typing is what makes the page jump around under the form */
+  ScrollTrigger.config({ ignoreMobileResize: true });
 
   /* smooth scroll */
   var lenis = null;
