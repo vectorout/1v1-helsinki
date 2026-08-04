@@ -36,17 +36,17 @@
     });
   });
 
-  /* ---------- booking form (always on) ---------- */
-  // Swap for a real endpoint (e.g. https://formspree.io/f/xxxxxxx) before launch.
-  var FORM_ENDPOINT = "https://formspree.io/f/REPLACE_ME";
+  /* ---------- booking form → Web3Forms → coach's inbox (always on) ---------- */
+  var FORM_ENDPOINT = "https://api.web3forms.com/submit";
+  var WEB3FORMS_KEY = "e22ef699-45da-4ba4-bdfb-6b886aa5c33a";
 
   var form = document.querySelector(".book-form");
   var note = document.querySelector(".form-note");
 
+  if (form) {
   /* message strings come from data-msg-* attributes so translated pages
      (e.g. /fi/) localize them in markup; English is the fallback */
   var msgs = {
-    unconnected: form.getAttribute("data-msg-unconnected") || "The form isn't connected yet — use the phone number or email next to the form and you'll get the same free session.",
     success: form.getAttribute("data-msg-success") || "Application received. You'll hear back within 48 hours to schedule your free session.",
     error: form.getAttribute("data-msg-error") || "Something went wrong — email or call instead, details next to the form.",
     sending: form.getAttribute("data-msg-sending") || "Sending…"
@@ -60,24 +60,22 @@
       return;
     }
 
-    if (FORM_ENDPOINT.indexOf("REPLACE_ME") !== -1) {
-      note.textContent = msgs.unconnected;
-      note.classList.add("show", "warn");
-      return;
-    }
-
     var btn = form.querySelector(".btn-submit");
     var btnLabel = btn.textContent;
     btn.disabled = true;
     btn.textContent = msgs.sending;
 
+    var fd = new FormData(form);
+    fd.append("access_key", WEB3FORMS_KEY);
+
     fetch(FORM_ENDPOINT, {
       method: "POST",
       headers: { Accept: "application/json" },
-      body: new FormData(form)
+      body: fd
     })
-      .then(function (res) {
-        if (!res.ok) throw new Error("send failed");
+      .then(function (res) { return res.json(); })
+      .then(function (data) {
+        if (!data.success) throw new Error(data.message || "send failed");
         form.reset();
         note.textContent = msgs.success;
         note.classList.remove("warn");
@@ -92,6 +90,7 @@
         btn.textContent = btnLabel;
       });
   });
+  }
 
   /* ---------- TikTok lightbox (always on) ----------
      Tiles are plain links to TikTok; with JS we upgrade them to an
@@ -213,7 +212,7 @@
   var track = document.querySelector(".method-track");
   var mm = gsap.matchMedia();
 
-  mm.add("(min-width: 900px)", function () {
+  if (track) mm.add("(min-width: 900px)", function () {
     function distance() {
       return track.scrollWidth - window.innerWidth;
     }
@@ -246,7 +245,7 @@
     });
   });
 
-  mm.add("(max-width: 899px)", function () {
+  if (track) mm.add("(max-width: 899px)", function () {
     document.querySelectorAll(".method-panel").forEach(function (panel) {
       var body = panel.querySelector(".panel-body");
       var num = panel.querySelector(".panel-num");

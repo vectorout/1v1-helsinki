@@ -721,6 +721,63 @@ a { color: inherit; }
 .form-note.show { display: block; }
 .form-note.warn { color: #FFB03A; }
 
+/* ---------- article / guide pages ---------- */
+.article-hero { padding: clamp(8rem, 15vw, 11rem) 0 clamp(1.5rem, 3vw, 2.5rem); }
+.article-hero h1 { font-size: clamp(2.4rem, 5.5vw, 4.6rem); max-width: 24ch; margin-bottom: 1.4rem; }
+.crumbs {
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--mut);
+  margin-bottom: 1.6rem;
+}
+.crumbs a { color: var(--mut); text-decoration: none; }
+.crumbs a:hover { color: var(--volt); }
+.crumbs span { color: var(--volt); }
+
+.prose { max-width: 46rem; padding-bottom: clamp(3rem, 6vw, 5rem); }
+.prose h2 {
+  font-size: clamp(1.8rem, 3.6vw, 2.7rem);
+  margin: 3.2rem 0 1.1rem;
+}
+.prose p { margin-bottom: 1.2rem; }
+.prose ul, .prose ol { margin: 0 0 1.2rem 1.3rem; }
+.prose li { margin-bottom: 0.55rem; }
+.prose strong { color: var(--ink); }
+.prose a { color: var(--ink); text-decoration-color: var(--volt); }
+.prose a:hover { color: var(--volt); }
+
+.article-cta {
+  background: var(--volt);
+  color: #0A0A0B;
+  padding: clamp(1.8rem, 4vw, 2.8rem);
+  margin: 2.6rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.2rem;
+}
+.article-cta p {
+  font-family: var(--font-display);
+  font-size: clamp(1.3rem, 2.6vw, 1.9rem);
+  text-transform: uppercase;
+  line-height: 1.15;
+  margin: 0;
+  max-width: 24ch;
+}
+.article-faq { max-width: 46rem; padding-bottom: clamp(3rem, 6vw, 5rem); }
+.article-faq h2 { font-size: clamp(1.8rem, 3.6vw, 2.7rem); margin-bottom: 1.5rem; }
+
+.footer-nav { display: flex; flex-wrap: wrap; gap: 0.4rem 1.4rem; }
+.footer-nav a {
+  font-size: var(--fs-sm);
+  color: var(--mut);
+  text-decoration: none;
+}
+.footer-nav a:hover { color: var(--volt); }
+
 /* ---------- footer ---------- */
 .footer { border-top: 1px solid var(--line); padding-block: 2.2rem; }
 .footer-grid {

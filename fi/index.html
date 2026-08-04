@@ -135,7 +135,7 @@
           {
             "@type": "Question",
             "name": "Minkä ikäisille valmennus sopii?",
-            "acceptedAnswer": { "@type": "Answer", "text": "Suurin osa pelaajista on 8–19-vuotiaita junioreita — ensimmäisiä akatemia-askeleitaan ottavista lapsista seuraavalle tasolle pyrkiviin teineihin. Treeni rakennetaan aina pelaajan iän ja tason mukaan." }
+            "acceptedAnswer": { "@type": "Answer", "text": "6–18-vuotiaille — ensimmäisiä liikkeitään opettelevista kuusivuotiaista akatemiapaikkaa tavoitteleviin teineihin. Treeni rakennetaan aina pelaajan iän ja tason mukaan." }
           },
           {
             "@type": "Question",
@@ -374,7 +374,7 @@
           </div>
           <div class="faq-item" data-reveal>
             <button class="faq-q" aria-expanded="false" aria-controls="faq-a5">Minkä ikäisille valmennus sopii?<span class="faq-icon"></span></button>
-            <div class="faq-a" id="faq-a5"><p>Suurin osa pelaajista on 8–19-vuotiaita junioreita — ensimmäisiä akatemia-askeleitaan ottavista lapsista seuraavalle tasolle pyrkiviin teineihin. Treeni rakennetaan aina pelaajan iän ja tason mukaan.</p></div>
+            <div class="faq-a" id="faq-a5"><p>6–18-vuotiaille — ensimmäisiä liikkeitään opettelevista kuusivuotiaista akatemiapaikkaa tavoitteleviin teineihin. Treeni rakennetaan aina pelaajan iän ja tason mukaan.</p></div>
           </div>
           <div class="faq-item" data-reveal>
             <button class="faq-q" aria-expanded="false" aria-controls="faq-a2">Missä ja milloin treenataan?<span class="faq-icon"></span></button>
@@ -407,7 +407,6 @@
         </div>
 
         <form class="book-form" novalidate
-          data-msg-unconnected="Lomake ei ole vielä käytössä — käytä viereistä puhelinnumeroa tai sähköpostia, niin saat saman ilmaisen treenin."
           data-msg-success="Hakemus vastaanotettu. Kuulet meistä 48 tunnin sisällä ilmaisen treenin sopimiseksi."
           data-msg-error="Jokin meni pieleen — laita sähköpostia tai soita, tiedot vieressä."
           data-msg-sending="Lähetetään…">
@@ -435,7 +434,9 @@
             <label for="f-club">Nykyinen seura / pelitaso</label>
             <input id="f-club" name="club" type="text" required placeholder="esim. HJK U15 · harrastesarja · ei seuraa vielä">
           </div>
-          <input type="text" name="_gotcha" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <input type="hidden" name="subject" value="Uusi ilmaisen treenin hakemus (FI) — twr.coach">
+          <input type="hidden" name="from_name" value="Train With Riwan -sivusto">
+          <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
           <button class="btn btn-volt btn-submit" type="submit">Varaa ilmainen treeni</button>
           <p class="form-note" role="status" aria-live="polite"></p>
         </form>
@@ -454,6 +455,10 @@
     <div class="container footer-grid">
       <p class="footer-brand">TRAIN WITH<span>RIWAN</span></p>
       <p class="footer-line">Yksityistä 1v1-jalkapallovalmennusta nuorille · Helsinki</p>
+      <nav class="footer-nav" aria-label="Oppaat">
+        <a href="oppaat/yksityinen-jalkapallovalmennus-helsinki/">Yksityisvalmennus: hinta &amp; valinta</a>
+        <a href="oppaat/jalkapallon-taitovalmennus-lapsille/">Taitovalmennus lapsille ja nuorille (6–18)</a>
+      </nav>
       <p class="footer-credit">© 2026 · Toteutus: <a href="https://rmr.agency" rel="noopener">RMR Agency</a></p>
     </div>
   </footer>
