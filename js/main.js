@@ -213,6 +213,36 @@
     });
   });
 
+  /* proof tiles — clip-mask cascade in, plus a scrubbed column drift on desktop */
+  var tiles = gsap.utils.toArray(".tile");
+  if (tiles.length) {
+    gsap.set(tiles, { clipPath: "inset(14% 10% 14% 10%)", opacity: 0, scale: 0.96 });
+    ScrollTrigger.batch(tiles, {
+      start: "top 88%",
+      onEnter: function (batch) {
+        gsap.to(batch, {
+          clipPath: "inset(0% 0% 0% 0%)",
+          opacity: 1,
+          scale: 1,
+          duration: 1,
+          ease: "power3.out",
+          stagger: 0.12
+        });
+      }
+    });
+
+    mm.add("(min-width: 1000px)", function () {
+      tiles.forEach(function (tile, i) {
+        var dir = i % 3 === 1 ? 1 : -1;
+        gsap.fromTo(tile, { y: dir * 26 }, {
+          y: dir * -26,
+          ease: "none",
+          scrollTrigger: { trigger: ".proof-grid", start: "top bottom", end: "bottom top", scrub: true }
+        });
+      });
+    });
+  }
+
   /* stat counters */
   document.querySelectorAll(".stat-num").forEach(function (el) {
     var target = parseInt(el.getAttribute("data-count"), 10);

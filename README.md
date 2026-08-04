@@ -27,8 +27,10 @@ Then open http://localhost:4173
 - [ ] **Form endpoint** — create a [Formspree](https://formspree.io) form, put the ID in `FORM_ENDPOINT` in `js/main.js`
 - [ ] **Brand** — "1V1 Helsinki" is a working name; swap if the coach wants his own name up
 - [ ] **Verify claims** — "100% of trial players stayed 3+ months" and "reply within 48 h" are the coach's claims; confirm before launch
-- [ ] **Domain** — point the real domain, add `canonical` + `og:image`, and **remove the `noindex` meta tag** in `index.html`
-- [ ] Consider a Finnish version (`/fi/`) once content is final
+- [ ] **Domain** — point the real domain, then in `index.html`: **remove `noindex`**, add `<link rel="canonical">`, `og:url`, and an `og:image` (1200×630 action shot)
+- [ ] **SEO swaps at launch** — real domain in `sitemap.xml` + `robots.txt`, home link in `404.html` (`/1v1-helsinki/` → `/`), phone/email in the JSON-LD
+- [ ] **Media alt text** — every clip/photo that replaces a placeholder ships with descriptive `alt`/`aria-label` (e.g. "Coach defending a 1v1 drill in Helsinki")
+- [ ] Consider a Finnish version (`/fi/`) with hreflang pair once content is final
 
 ## Notes
 

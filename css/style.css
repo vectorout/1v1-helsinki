@@ -17,6 +17,13 @@
   --font-body: "Archivo", "Helvetica Neue", sans-serif;
   --pad-x: clamp(1.25rem, 4vw, 4rem);
   --pad-y: clamp(5rem, 11vw, 10rem);
+  /* fluid type scale — every size tracks the viewport, no static jumps */
+  --fs-2xs: clamp(0.58rem, 0.54rem + 0.2vw, 0.66rem);
+  --fs-xs: clamp(0.66rem, 0.6rem + 0.3vw, 0.78rem);
+  --fs-sm: clamp(0.76rem, 0.7rem + 0.35vw, 0.88rem);
+  --fs-body: clamp(0.95rem, 0.88rem + 0.4vw, 1.0625rem);
+  --fs-lg: clamp(1rem, 0.9rem + 0.6vw, 1.2rem);
+  --fs-xl: clamp(1.15rem, 1rem + 0.8vw, 1.55rem);
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -28,7 +35,7 @@ body {
   background: var(--bg);
   color: var(--body);
   font-family: var(--font-body);
-  font-size: 1.0625rem;
+  font-size: var(--fs-body);
   line-height: 1.6;
   overflow-x: clip;
   -webkit-font-smoothing: antialiased;
@@ -71,7 +78,7 @@ a { color: inherit; }
 
 /* ---------- kickers, subs, buttons ---------- */
 .kicker {
-  font-size: 0.78rem;
+  font-size: var(--fs-xs);
   font-weight: 700;
   letter-spacing: 0.28em;
   text-transform: uppercase;
@@ -94,11 +101,11 @@ a { color: inherit; }
   max-width: 34rem;
   margin-top: 1.4rem;
   color: var(--mut);
-  font-size: 1.05rem;
+  font-size: var(--fs-lg);
 }
 
 .eyebrow {
-  font-size: 0.78rem;
+  font-size: var(--fs-xs);
   font-weight: 700;
   letter-spacing: 0.28em;
   text-transform: uppercase;
@@ -109,12 +116,12 @@ a { color: inherit; }
 .btn {
   display: inline-block;
   font-family: var(--font-body);
-  font-size: 0.85rem;
+  font-size: var(--fs-sm);
   font-weight: 800;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   text-decoration: none;
-  padding: 1.15rem 2.2rem;
+  padding: clamp(1rem, 0.85rem + 0.7vw, 1.15rem) clamp(1.5rem, 1.1rem + 1.6vw, 2.2rem);
   border: 1px solid transparent;
   cursor: pointer;
   transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
@@ -131,7 +138,7 @@ a { color: inherit; }
 .btn-dark { background: #0A0A0B; color: var(--volt); }
 .btn-dark:hover { background: #1C1C1F; }
 
-.btn-sm { padding: 0.7rem 1.3rem; font-size: 0.75rem; }
+.btn-sm { padding: clamp(0.6rem, 0.5rem + 0.5vw, 0.75rem) clamp(1rem, 0.85rem + 0.8vw, 1.3rem); font-size: var(--fs-xs); }
 
 /* ---------- nav ---------- */
 .nav {
@@ -157,7 +164,7 @@ a { color: inherit; }
 
 .nav-brand {
   font-family: var(--font-display);
-  font-size: 1.25rem;
+  font-size: var(--fs-xl);
   color: var(--volt);
   text-decoration: none;
   letter-spacing: 0.03em;
@@ -166,7 +173,7 @@ a { color: inherit; }
 
 .nav-links { display: flex; gap: 2rem; }
 .nav-links a {
-  font-size: 0.8rem;
+  font-size: var(--fs-sm);
   font-weight: 700;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -240,7 +247,7 @@ a { color: inherit; }
   margin-top: auto;
   padding: 2.2rem var(--pad-x) 1.8rem;
   border-top: 1px solid var(--line);
-  font-size: 0.75rem;
+  font-size: var(--fs-xs);
   font-weight: 700;
   letter-spacing: 0.22em;
   text-transform: uppercase;
@@ -265,7 +272,7 @@ a { color: inherit; }
 /* ---------- marquee ---------- */
 .marquee {
   border-block: 1px solid var(--line);
-  padding-block: 1.1rem;
+  padding-block: clamp(0.85rem, 0.7rem + 1vw, 1.2rem);
   overflow: clip;
   background: var(--bg);
 }
@@ -320,11 +327,11 @@ a { color: inherit; }
 
 .panel-body { max-width: 44rem; }
 .panel-body h3 { font-size: clamp(3rem, 7.5vw, 7rem); margin-bottom: 1.6rem; }
-.panel-body p { max-width: 30rem; font-size: 1.1rem; margin-bottom: 2rem; }
+.panel-body p { max-width: 30rem; font-size: var(--fs-lg); margin-bottom: 2rem; }
 
 .tags { display: flex; flex-wrap: wrap; gap: 0.6rem; list-style: none; }
 .tags li {
-  font-size: 0.72rem;
+  font-size: var(--fs-xs);
   font-weight: 700;
   letter-spacing: 0.18em;
   text-transform: uppercase;
@@ -365,7 +372,7 @@ a { color: inherit; }
 }
 .stat-fix { color: var(--volt); }
 .stat-label {
-  font-size: 0.82rem;
+  font-size: var(--fs-sm);
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -417,7 +424,7 @@ a { color: inherit; }
   position: absolute;
   top: 0.8rem;
   left: 0.8rem;
-  font-size: 0.62rem;
+  font-size: var(--fs-2xs);
   font-weight: 800;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -426,7 +433,7 @@ a { color: inherit; }
   padding: 0.3rem 0.55rem;
 }
 .ph-label {
-  font-size: 0.78rem;
+  font-size: var(--fs-xs);
   font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -447,14 +454,14 @@ a { color: inherit; }
 .proof-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1.2rem;
+  gap: clamp(0.8rem, 0.5rem + 1.5vw, 1.5rem);
 }
 .tile { display: flex; flex-direction: column; }
 .tile .media-ph { aspect-ratio: 4 / 3; transition: border-color 0.25s ease; }
 .tile:hover .media-ph { border-color: var(--volt-dim); }
 .tile figcaption {
-  padding-top: 0.9rem;
-  font-size: 0.82rem;
+  padding-top: clamp(0.6rem, 0.5rem + 0.5vw, 0.9rem);
+  font-size: var(--fs-sm);
   font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -464,7 +471,7 @@ a { color: inherit; }
   gap: 0.8rem;
 }
 .tile-cat {
-  font-size: 0.66rem;
+  font-size: var(--fs-2xs);
   font-weight: 800;
   letter-spacing: 0.18em;
   color: var(--volt);
@@ -492,7 +499,7 @@ a { color: inherit; }
   border: 0;
   color: var(--ink);
   font-family: var(--font-body);
-  font-size: 1.1rem;
+  font-size: var(--fs-lg);
   font-weight: 700;
   text-align: left;
   padding: 1.5rem 0;
@@ -544,7 +551,7 @@ a { color: inherit; }
 
 .book-alt { margin-top: 2.8rem; padding-top: 1.8rem; border-top: 1px solid var(--line); }
 .book-alt-label {
-  font-size: 0.78rem;
+  font-size: var(--fs-xs);
   font-weight: 700;
   letter-spacing: 0.22em;
   text-transform: uppercase;
@@ -553,7 +560,7 @@ a { color: inherit; }
 }
 .contact-item {
   font-family: var(--font-display);
-  font-size: 1.5rem;
+  font-size: var(--fs-xl);
   color: var(--ink);
   margin-bottom: 0.6rem;
   display: flex;
@@ -571,7 +578,7 @@ a { color: inherit; }
 .field-row .field-sm { max-width: 100%; }
 .field { display: flex; flex-direction: column; gap: 0.55rem; }
 .field label {
-  font-size: 0.72rem;
+  font-size: var(--fs-xs);
   font-weight: 800;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -583,7 +590,7 @@ a { color: inherit; }
   border-bottom: 1px solid rgba(244, 244, 240, 0.25);
   color: var(--ink);
   font-family: var(--font-body);
-  font-size: 1.05rem;
+  font-size: var(--fs-lg);
   padding: 0.7rem 0.1rem;
   transition: border-color 0.25s ease;
 }
@@ -597,7 +604,7 @@ a { color: inherit; }
 
 .form-note {
   display: none;
-  font-size: 0.95rem;
+  font-size: var(--fs-body);
   font-weight: 600;
   color: var(--volt);
 }
@@ -613,9 +620,9 @@ a { color: inherit; }
   justify-content: space-between;
   gap: 1rem;
 }
-.footer-brand { font-family: var(--font-display); font-size: 1.1rem; color: var(--volt); }
+.footer-brand { font-family: var(--font-display); font-size: var(--fs-lg); color: var(--volt); }
 .footer-brand span { color: var(--ink); margin-left: 0.3rem; }
-.footer-line, .footer-credit { font-size: 0.8rem; color: var(--mut); }
+.footer-line, .footer-credit { font-size: var(--fs-sm); color: var(--mut); }
 .footer-credit a { color: var(--body); text-decoration-color: var(--volt); }
 .footer-credit a:hover { color: var(--volt); }
 
@@ -639,16 +646,12 @@ a { color: inherit; }
 
 @media (max-width: 800px) {
   .nav-links { display: none; }
-  .nav .btn-sm { padding: 0.85rem 1.25rem; }
-  .hero-foot { font-size: 0.66rem; letter-spacing: 0.16em; }
+  .nav .btn-sm { padding: 0.85rem 1.25rem; } /* tap target ≥ 44px */
+  .hero-foot { letter-spacing: 0.16em; }
   .scroll-cue { display: none; }
   .hero-cta .btn { flex: 1 1 100%; text-align: center; }
   .hero-pitch { top: -6%; right: -34%; width: 110vmin; opacity: 0.85; }
-  .section-sub, .panel-body p { font-size: 1rem; }
-  .contact-item { font-size: 1.3rem; }
-  .faq-q { font-size: 1rem; }
   .stat { padding: 2.2rem 1.5rem; }
-  .stat-label { font-size: 0.72rem; }
   .field-row { grid-template-columns: 1fr; }
   .proof-grid { grid-template-columns: 1fr; }
   .footer-grid { flex-direction: column; align-items: flex-start; gap: 0.5rem; }

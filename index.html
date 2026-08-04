@@ -3,14 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>1v1 Helsinki — Private 1v1 Football Coaching | Free First Session</title>
-  <meta name="description" content="Private 1-on-1 football coaching in Helsinki. 30 days, 8 sessions, one focus: 1v1 mechanics, explosive speed and fast footwork. First session free.">
-  <!-- TODO: remove noindex when the site launches on its real domain -->
+  <title>Private 1v1 Football Coach in Helsinki | Free First Session — 1V1 Helsinki</title>
+  <meta name="description" content="Private 1-on-1 football coaching in Helsinki. Eight sessions a month of 1v1 mechanics, explosive speed and fast footwork — all ages and levels. First session free.">
+  <!-- TODO at launch (real domain): remove noindex, then add
+       <link rel="canonical" href="https://YOURDOMAIN/">
+       hreflang pair once /fi/ exists, and og:url + og:image (1200×630). -->
   <meta name="robots" content="noindex">
   <meta name="theme-color" content="#0A0A0B">
   <meta property="og:type" content="website">
+  <meta property="og:site_name" content="1V1 Helsinki">
   <meta property="og:title" content="Give me 30 days. You'll be a different player.">
-  <meta property="og:description" content="Private 1v1 football coaching in Helsinki. 8 sessions a month, first session free.">
+  <meta property="og:description" content="Private 1v1 football coaching in Helsinki. Eight sessions a month, first session free — every trial player has stayed 3+ months.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Give me 30 days. You'll be a different player.">
+  <meta name="twitter:description" content="Private 1v1 football coaching in Helsinki. First session free.">
   <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='14'%20fill='%23C6FF3A'/%3E%3Ctext%20x='32'%20y='44'%20font-family='Arial,sans-serif'%20font-size='26'%20font-weight='900'%20text-anchor='middle'%20fill='%230A0A0B'%3E1v1%3C/text%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,20 +27,33 @@
     "@context": "https://schema.org",
     "@graph": [
       {
-        "@type": "LocalBusiness",
-        "@id": "https://example.com/#coach",
-        "name": "1v1 Helsinki — Private Football Coaching",
-        "description": "Private 1-on-1 football coaching in Helsinki: 1v1 mechanics, explosive speed and fast footwork. Eight sessions a month, first session free.",
-        "areaServed": { "@type": "City", "name": "Helsinki" },
-        "address": { "@type": "PostalAddress", "addressLocality": "Helsinki", "addressCountry": "FI" },
-        "priceRange": "€400/month",
+        "@type": ["LocalBusiness", "SportsActivityLocation"],
+        "@id": "https://vectorout.github.io/1v1-helsinki/#coach",
+        "name": "1V1 Helsinki — Private Football Coaching",
+        "alternateName": "1v1 Helsinki",
+        "description": "Private 1-on-1 football coaching in Helsinki: 1v1 mechanics, explosive speed and fast footwork. Eight private sessions a month, first session free.",
+        "url": "https://vectorout.github.io/1v1-helsinki/",
+        "areaServed": { "@type": "City", "name": "Helsinki", "containedInPlace": { "@type": "Country", "name": "Finland" } },
+        "address": { "@type": "PostalAddress", "addressLocality": "Helsinki", "addressRegion": "Uusimaa", "addressCountry": "FI" },
+        "priceRange": "€€",
         "telephone": "+358 XX XXX XXXX",
-        "makesOffer": {
-          "@type": "Offer",
-          "name": "Free first training session",
-          "price": "0",
-          "priceCurrency": "EUR"
-        }
+        "knowsAbout": ["1v1 football training", "football dribbling", "explosive speed training", "football footwork", "private football coaching"],
+        "makesOffer": [
+          {
+            "@type": "Offer",
+            "name": "Free first training session",
+            "description": "One full private session at no cost before committing to anything.",
+            "price": "0",
+            "priceCurrency": "EUR"
+          },
+          {
+            "@type": "Offer",
+            "name": "Monthly 1v1 training block",
+            "description": "Eight private sessions per month, two per week: 1v1 mechanics, explosive speed, fast footwork.",
+            "price": "400",
+            "priceCurrency": "EUR"
+          }
+        ]
       },
       {
         "@type": "FAQPage",
@@ -218,27 +237,27 @@
           <p class="section-sub">Training intensity and match-day results. No highlight-reel filler.</p>
         </div>
         <div class="proof-grid">
-          <figure class="tile" data-reveal>
+          <figure class="tile">
             <div class="media-ph"><span class="ph-tag">Add clip</span></div>
             <figcaption><span class="tile-cat">Training</span>1v1 duels — coach defending</figcaption>
           </figure>
-          <figure class="tile" data-reveal>
+          <figure class="tile">
             <div class="media-ph"><span class="ph-tag">Add clip</span></div>
             <figcaption><span class="tile-cat">Training</span>First-step speed work</figcaption>
           </figure>
-          <figure class="tile" data-reveal>
+          <figure class="tile">
             <div class="media-ph"><span class="ph-tag">Add clip</span></div>
             <figcaption><span class="tile-cat">Training</span>Footwork under pressure</figcaption>
           </figure>
-          <figure class="tile" data-reveal>
+          <figure class="tile">
             <div class="media-ph"><span class="ph-tag">Add clip</span></div>
             <figcaption><span class="tile-cat">Match</span>Player taking a man on</figcaption>
           </figure>
-          <figure class="tile" data-reveal>
+          <figure class="tile">
             <div class="media-ph"><span class="ph-tag">Add clip</span></div>
             <figcaption><span class="tile-cat">Match</span>Duel won — chance created</figcaption>
           </figure>
-          <figure class="tile" data-reveal>
+          <figure class="tile">
             <div class="media-ph"><span class="ph-tag">Add clip</span></div>
             <figcaption><span class="tile-cat">Match</span>End product</figcaption>
           </figure>
