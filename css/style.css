@@ -56,6 +56,13 @@ h1, h2, h3 {
 
 h2 { font-size: clamp(2.6rem, 5.5vw, 5rem); }
 
+/* Finnish: Anton's Ä/Ö dots reach 1.053em above the baseline (measured via
+   canvas ink extents) — FI leading must clear that or dots hit the line above */
+:lang(fi) h1, :lang(fi) h2, :lang(fi) h3 { line-height: 1.1; }
+:lang(fi) .hero-title { line-height: 1.1; }
+:lang(fi) .hero-stroke { line-height: 1.14; }
+:lang(fi) .statement-text { line-height: 1.16; }
+
 a { color: inherit; }
 
 .container {
