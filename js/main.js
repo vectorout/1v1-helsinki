@@ -93,6 +93,50 @@
       });
   });
 
+  /* ---------- TikTok lightbox (always on) ----------
+     Tiles are plain links to TikTok; with JS we upgrade them to an
+     in-page player. The TikTok iframe (and its trackers) loads ONLY
+     after the visitor clicks a clip — fast page, EU-friendly. */
+  var ttModal = document.querySelector(".tt-modal");
+  if (ttModal) {
+    var ttPlayer = ttModal.querySelector(".tt-player");
+    var ttOpener = null;
+
+    var ttClose = function () {
+      ttModal.hidden = true;
+      ttPlayer.innerHTML = "";
+      document.documentElement.style.overflow = "";
+      if (typeof lenis !== "undefined" && lenis) lenis.start();
+      if (ttOpener) ttOpener.focus();
+    };
+
+    document.querySelectorAll(".tile-media[data-tiktok-id]").forEach(function (a) {
+      a.addEventListener("click", function (e) {
+        e.preventDefault();
+        ttOpener = a;
+        var iframe = document.createElement("iframe");
+        iframe.src = "https://www.tiktok.com/embed/v2/" + a.getAttribute("data-tiktok-id");
+        iframe.allow = "autoplay; encrypted-media; fullscreen; picture-in-picture";
+        iframe.setAttribute("allowfullscreen", "");
+        var img = a.querySelector("img");
+        iframe.title = img ? img.alt : "TikTok video";
+        ttPlayer.innerHTML = "";
+        ttPlayer.appendChild(iframe);
+        ttModal.hidden = false;
+        document.documentElement.style.overflow = "hidden";
+        if (typeof lenis !== "undefined" && lenis) lenis.stop();
+        ttModal.querySelector(".tt-close").focus();
+      });
+    });
+
+    ttModal.querySelectorAll("[data-tt-close]").forEach(function (el) {
+      el.addEventListener("click", ttClose);
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && !ttModal.hidden) ttClose();
+    });
+  }
+
   /* ---------- animation setup ---------- */
   if (!hasGsap || prefersReduced) {
     document.documentElement.classList.add("no-anim");

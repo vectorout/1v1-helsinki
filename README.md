@@ -21,8 +21,8 @@ Then open http://localhost:4173
 
 ## Launch checklist (all placeholders are marked on-page with a volt "ADD …" tag)
 
-- [ ] **Coach photo** — hero/about action shot (`.coach-media`), ideally defending a player
-- [ ] **6 media tiles** — 3 training clips (coach defending), 3 match clips of players (`#proof`)
+- [x] **Media** — 6 TikTok clips from [@trainwithriwan](https://www.tiktok.com/@trainwithriwan) as click-to-play facades (self-hosted thumbs in `assets/tiktok/`, lightbox player). The TikTok iframe loads **only on click** — fast page and no third-party trackers before user action (EU-friendly, no consent banner needed for passive visits). To swap a clip: change the link + `data-tiktok-id` in BOTH html files, fetch the new thumb via `https://www.tiktok.com/oembed?url=<video url>` (thumbnail links expire — always download, never hotlink), compress to ~720px wide, and update the matching VideoObject in both schema blocks.
+- [ ] **Coach photo** — portrait placeholder removed by request; the coach section is text-only. Re-add a figure if he ever gets a proper action shot.
 - [ ] **Phone + email** — `#book` section and the LocalBusiness JSON-LD in `index.html`
 - [ ] **Form endpoint** — create a [Formspree](https://formspree.io) form, put the ID in `FORM_ENDPOINT` in `js/main.js`
 - [ ] **Brand** — "1V1 Helsinki" is a working name; swap if the coach wants his own name up
