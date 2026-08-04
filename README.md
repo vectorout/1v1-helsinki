@@ -30,7 +30,7 @@ Then open http://localhost:4173
 - [ ] **Domain** — point the real domain, then in `index.html`: **remove `noindex`**, add `<link rel="canonical">`, `og:url`, and an `og:image` (1200×630 action shot)
 - [ ] **SEO swaps at launch** — real domain in `sitemap.xml` + `robots.txt`, home link in `404.html` (`/1v1-helsinki/` → `/`), phone/email in the JSON-LD
 - [ ] **Media alt text** — every clip/photo that replaces a placeholder ships with descriptive `alt`/`aria-label` (e.g. "Coach defending a 1v1 drill in Helsinki")
-- [ ] Consider a Finnish version (`/fi/`) with hreflang pair once content is final
+- [ ] **Finnish version** — live at `/fi/`, hreflang-paired both ways (x-default → EN). Have the coach read the Finnish copy once; headlines use spoken register ("Anna mulle", "Susta tulee") on purpose. Any copy change must be made in BOTH `index.html` and `fi/index.html` (and their FAQ schema blocks, which must mirror on-page text exactly)
 
 ## Notes
 

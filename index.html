@@ -10,8 +10,14 @@
        hreflang pair once /fi/ exists, and og:url + og:image (1200×630). -->
   <meta name="robots" content="noindex">
   <meta name="theme-color" content="#0A0A0B">
+  <!-- TODO at launch: swap the hreflang URLs to the real domain -->
+  <link rel="alternate" hreflang="en" href="https://vectorout.github.io/1v1-helsinki/">
+  <link rel="alternate" hreflang="fi" href="https://vectorout.github.io/1v1-helsinki/fi/">
+  <link rel="alternate" hreflang="x-default" href="https://vectorout.github.io/1v1-helsinki/">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="1V1 Helsinki">
+  <meta property="og:locale" content="en_GB">
+  <meta property="og:locale:alternate" content="fi_FI">
   <meta property="og:title" content="Give me 30 days. You'll be a different player.">
   <meta property="og:description" content="Private 1v1 football coaching in Helsinki. Eight sessions a month, first session free — every trial player has stayed 3+ months.">
   <meta name="twitter:card" content="summary_large_image">
@@ -37,6 +43,7 @@
         "address": { "@type": "PostalAddress", "addressLocality": "Helsinki", "addressRegion": "Uusimaa", "addressCountry": "FI" },
         "priceRange": "€€",
         "telephone": "+358 XX XXX XXXX",
+        "knowsLanguage": ["fi", "en"],
         "knowsAbout": ["1v1 football training", "football dribbling", "explosive speed training", "football footwork", "private football coaching"],
         "makesOffer": [
           {
@@ -96,7 +103,10 @@
       <a href="#proof">Proof</a>
       <a href="#faq">FAQ</a>
     </nav>
-    <a class="btn btn-volt btn-sm" href="#book">Free session</a>
+    <div class="nav-actions">
+      <a class="lang-switch" href="fi/" lang="fi" hreflang="fi" aria-label="Suomeksi">FI</a>
+      <a class="btn btn-volt btn-sm" href="#book">Free session</a>
+    </div>
   </header>
 
   <main id="top">

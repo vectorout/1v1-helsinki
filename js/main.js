@@ -43,6 +43,15 @@
   var form = document.querySelector(".book-form");
   var note = document.querySelector(".form-note");
 
+  /* message strings come from data-msg-* attributes so translated pages
+     (e.g. /fi/) localize them in markup; English is the fallback */
+  var msgs = {
+    unconnected: form.getAttribute("data-msg-unconnected") || "The form isn't connected yet — use the phone number or email next to the form and you'll get the same free session.",
+    success: form.getAttribute("data-msg-success") || "Application received. You'll hear back within 48 hours to schedule your free session.",
+    error: form.getAttribute("data-msg-error") || "Something went wrong — email or call instead, details next to the form.",
+    sending: form.getAttribute("data-msg-sending") || "Sending…"
+  };
+
   form.addEventListener("submit", function (e) {
     e.preventDefault();
 
@@ -52,14 +61,15 @@
     }
 
     if (FORM_ENDPOINT.indexOf("REPLACE_ME") !== -1) {
-      note.textContent = "The form isn't connected yet — use the phone number or email on the left and you'll get the same free session.";
+      note.textContent = msgs.unconnected;
       note.classList.add("show", "warn");
       return;
     }
 
     var btn = form.querySelector(".btn-submit");
+    var btnLabel = btn.textContent;
     btn.disabled = true;
-    btn.textContent = "Sending…";
+    btn.textContent = msgs.sending;
 
     fetch(FORM_ENDPOINT, {
       method: "POST",
@@ -69,17 +79,17 @@
       .then(function (res) {
         if (!res.ok) throw new Error("send failed");
         form.reset();
-        note.textContent = "Application received. You'll hear back within 48 hours to schedule your free session.";
+        note.textContent = msgs.success;
         note.classList.remove("warn");
         note.classList.add("show");
       })
       .catch(function () {
-        note.textContent = "Something went wrong — email or call instead, details on the left.";
+        note.textContent = msgs.error;
         note.classList.add("show", "warn");
       })
       .finally(function () {
         btn.disabled = false;
-        btn.textContent = "Claim free session";
+        btn.textContent = btnLabel;
       });
   });
 
@@ -120,7 +130,7 @@
   });
 
   /* hero intro */
-  gsap.set(".line-inner", { yPercent: 115 });
+  gsap.set(".line-inner", { yPercent: 135 });
   gsap.set("[data-fade]", { opacity: 0, y: 26 });
 
   gsap.timeline({ defaults: { ease: "power4.out" } })

@@ -171,6 +171,22 @@ a { color: inherit; }
 }
 .nav-brand span { color: var(--ink); margin-left: 0.3rem; }
 
+.nav-actions { display: flex; align-items: center; gap: 0.7rem; }
+
+.lang-switch {
+  font-size: var(--fs-xs);
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--mut);
+  border: 1px solid var(--line);
+  padding: 0.55em 0.8em;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+.lang-switch:hover { color: var(--volt); border-color: var(--volt); }
+.lang-switch:focus-visible { outline: 2px solid var(--volt); outline-offset: 3px; }
+
 .nav-links { display: flex; gap: 2rem; }
 .nav-links a {
   font-size: var(--fs-sm);
@@ -218,7 +234,9 @@ a { color: inherit; }
   line-height: 0.9;
   margin-bottom: 1.8rem;
 }
-.line { display: block; overflow: hidden; padding-block: 0.04em; }
+/* extra top padding keeps diacritics (Ä, Ö) inside the clip box; negative
+   margin cancels it out visually */
+.line { display: block; overflow: hidden; padding: 0.18em 0 0.06em; margin: -0.18em 0 -0.06em; }
 .line-inner { display: block; will-change: transform; }
 
 .hero-stroke {
