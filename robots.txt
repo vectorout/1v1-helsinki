@@ -1,6 +1,5 @@
-# 1V1 Helsinki — allow everything; page-level noindex governs until real-domain launch
+# Train With Riwan (twr.coach) — allow everything; page-level noindex governs until launch
 User-agent: *
 Allow: /
 
-# TODO at launch: swap to the real domain
-Sitemap: https://vectorout.github.io/1v1-helsinki/sitemap.xml
+Sitemap: https://twr.coach/sitemap.xml

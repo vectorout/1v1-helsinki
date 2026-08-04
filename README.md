@@ -1,15 +1,17 @@
-# 1v1 Helsinki
+# Train With Riwan — twr.coach
 
-Scroll-animated one-page site for a private 1v1 football coach in Helsinki.
-Free-first-session funnel: hero promise → method → proof → booking form.
+Scroll-animated bilingual one-pager for Coach Riwan's private 1v1 football
+coaching in Helsinki ([@trainwithriwan](https://www.tiktok.com/@trainwithriwan)).
+Free-first-session funnel: hero promise → method → TikTok proof → booking form.
 
-Built by [RMR Agency](https://rmr.agency).
+Built by [RMR Agency](https://rmr.agency). Preview: https://vectorout.github.io/1v1-helsinki/ (EN) · [/fi/](https://vectorout.github.io/1v1-helsinki/fi/) (FI).
 
 ## Stack
 
 Static site, no build step. GSAP 3 + ScrollTrigger (pinned horizontal "method"
-section, scrubbed word reveal, counters) and Lenis smooth scroll, all via CDN.
-Fonts: Anton + Archivo (Google Fonts). Deploys anywhere — built for GitHub Pages.
+section, scrubbed word reveal, counters, TikTok tile cascade) and Lenis smooth
+scroll, all via CDN. Fonts: Anton + Archivo. TikTok clips are click-to-play
+facades — self-hosted thumbs in `assets/tiktok/`, iframe loads only on click.
 
 ## Run locally
 
@@ -17,22 +19,54 @@ Fonts: Anton + Archivo (Google Fonts). Deploys anywhere — built for GitHub Pag
 python3 -m http.server 4173
 ```
 
-Then open http://localhost:4173
+## SEO targeting
 
-## Launch checklist (all placeholders are marked on-page with a volt "ADD …" tag)
+- **FI (primary):** yksityinen jalkapallovalmentaja · jalkapallon taitovalmennus ·
+  jalkapallovalmennus nuorille / junioreille · Helsinki. Carried by the FI title,
+  description, FAQ (incl. the ages question), schema `knowsAbout`, footer line.
+- **EN (expat parents):** private football coach Helsinki · 1-on-1 football
+  coaching for young players.
+- Entity wiring: `LocalBusiness`+`SportsActivityLocation` with founder Person
+  "Coach Riwan", `sameAs` → TikTok, 6 `VideoObject`s per language, FAQ schema
+  mirroring on-page text exactly, hreflang en/fi/x-default, canonical → twr.coach.
 
-- [x] **Media** — 6 TikTok clips from [@trainwithriwan](https://www.tiktok.com/@trainwithriwan) as click-to-play facades (self-hosted thumbs in `assets/tiktok/`, lightbox player). The TikTok iframe loads **only on click** — fast page and no third-party trackers before user action (EU-friendly, no consent banner needed for passive visits). To swap a clip: change the link + `data-tiktok-id` in BOTH html files, fetch the new thumb via `https://www.tiktok.com/oembed?url=<video url>` (thumbnail links expire — always download, never hotlink), compress to ~720px wide, and update the matching VideoObject in both schema blocks.
-- [ ] **Coach photo** — portrait placeholder removed by request; the coach section is text-only. Re-add a figure if he ever gets a proper action shot.
-- [ ] **Phone + email** — `#book` section and the LocalBusiness JSON-LD in `index.html`
-- [ ] **Form endpoint** — create a [Formspree](https://formspree.io) form, put the ID in `FORM_ENDPOINT` in `js/main.js`
-- [ ] **Brand** — "1V1 Helsinki" is a working name; swap if the coach wants his own name up
-- [ ] **Verify claims** — "100% of trial players stayed 3+ months" and "reply within 48 h" are the coach's claims; confirm before launch
-- [ ] **Domain** — point the real domain, then in `index.html`: **remove `noindex`**, add `<link rel="canonical">`, `og:url`, and an `og:image` (1200×630 action shot)
-- [ ] **SEO swaps at launch** — real domain in `sitemap.xml` + `robots.txt`, home link in `404.html` (`/1v1-helsinki/` → `/`), phone/email in the JSON-LD
-- [ ] **Media alt text** — every clip/photo that replaces a placeholder ships with descriptive `alt`/`aria-label` (e.g. "Coach defending a 1v1 drill in Helsinki")
-- [ ] **Finnish version** — live at `/fi/`, hreflang-paired both ways (x-default → EN). Have the coach read the Finnish copy once; headlines use spoken register ("Anna mulle", "Susta tulee") on purpose. Any copy change must be made in BOTH `index.html` and `fi/index.html` (and their FAQ schema blocks, which must mirror on-page text exactly)
+## LAUNCH RUNBOOK (twr.coach)
 
-## Notes
+All page metadata (canonical, hreflang, og:url, schema, sitemap, robots) already
+points at twr.coach. Remaining steps, in order:
 
-- The GitHub Pages preview is intentionally `noindex` so it never competes with the real domain.
-- Media placeholders are styled frames — drop `<img>`/`<video>` straight into `.media-ph` containers.
+1. **DNS** at the registrar for `twr.coach`: four A records
+   `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`
+   (+ AAAA `2606:50c0:8000::153` …`8003::153` if IPv6 wanted). Optional
+   `www` CNAME → `vectorout.github.io`.
+2. **CNAME file**: `echo "twr.coach" > CNAME`, commit, push. (Do this only
+   after DNS — earlier and the github.io preview starts redirecting nowhere.)
+3. Repo Settings → Pages → verify custom domain shows twr.coach, tick
+   **Enforce HTTPS** once the cert issues (~minutes).
+4. Remove `<meta name="robots" content="noindex">` from **both**
+   `index.html` and `fi/index.html`.
+5. **Google Search Console**: add twr.coach (domain property), submit
+   `https://twr.coach/sitemap.xml`.
+6. Google **Business Profile** for "Train With Riwan" (service-area business,
+   Helsinki) — biggest local-pack lever for "jalkapallovalmentaja helsinki".
+
+## Remaining checklist
+
+- [ ] **Form endpoint** — create a [Formspree](https://formspree.io) form (use
+  trainwithriwan@gmail.com), put the ID in `FORM_ENDPOINT` in `js/main.js`
+- [ ] **Coach reviews FI copy** — headlines use spoken register ("Anna mulle",
+  "Susta tulee") on purpose
+- [ ] **Verify claims** — "100% of trial players stayed 3+ months" and "reply
+  within 48 h" are the coach's claims; confirm before indexing
+- [ ] **og:image** — currently the night-session TikTok thumb (vertical); replace
+  with a 1200×630 action shot when one exists
+- [x] Media — 6 TikTok facades; to swap a clip: link + `data-tiktok-id` in BOTH
+  html files, fresh thumb via `https://www.tiktok.com/oembed?url=<video url>`
+  (thumb links expire — download, never hotlink), update both VideoObject blocks
+- [x] Phone/email wired: +358 41 318 5357 · trainwithriwan@gmail.com
+
+## Editing rule
+
+Copy changes go in **both** `index.html` and `fi/index.html`, and any FAQ change
+must also update the matching FAQPage schema block in the same file — schema and
+on-page text must stay word-for-word identical.
