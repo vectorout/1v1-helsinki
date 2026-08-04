@@ -190,13 +190,25 @@
   });
 
   mm.add("(max-width: 899px)", function () {
-    document.querySelectorAll(".method-panel .panel-body").forEach(function (body) {
-      gsap.from(body, {
+    document.querySelectorAll(".method-panel").forEach(function (panel) {
+      var body = panel.querySelector(".panel-body");
+      var num = panel.querySelector(".panel-num");
+
+      gsap.from(body.children, {
         opacity: 0,
-        y: 40,
-        duration: 0.9,
+        y: 36,
+        duration: 0.8,
+        stagger: 0.12,
         ease: "power3.out",
-        scrollTrigger: { trigger: body, start: "top 85%" }
+        scrollTrigger: { trigger: panel, start: "top 78%" }
+      });
+
+      /* the giant outlined number drifts sideways as the panel passes — the
+         mobile stand-in for the desktop horizontal pin */
+      gsap.fromTo(num, { xPercent: 14 }, {
+        xPercent: -14,
+        ease: "none",
+        scrollTrigger: { trigger: panel, start: "top bottom", end: "bottom top", scrub: true }
       });
     });
   });

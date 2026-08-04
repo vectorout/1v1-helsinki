@@ -639,10 +639,19 @@ a { color: inherit; }
 
 @media (max-width: 800px) {
   .nav-links { display: none; }
+  .nav .btn-sm { padding: 0.85rem 1.25rem; }
   .hero-foot { font-size: 0.66rem; letter-spacing: 0.16em; }
   .scroll-cue { display: none; }
+  .hero-cta .btn { flex: 1 1 100%; text-align: center; }
+  .hero-pitch { top: -6%; right: -34%; width: 110vmin; opacity: 0.85; }
+  .section-sub, .panel-body p { font-size: 1rem; }
+  .contact-item { font-size: 1.3rem; }
+  .faq-q { font-size: 1rem; }
+  .stat { padding: 2.2rem 1.5rem; }
+  .stat-label { font-size: 0.72rem; }
   .field-row { grid-template-columns: 1fr; }
   .proof-grid { grid-template-columns: 1fr; }
+  .footer-grid { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
 }
 
 /* ---------- reduced motion ---------- */
