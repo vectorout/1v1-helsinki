@@ -44,13 +44,27 @@ Caveats of the proxy setup:
   (creates CNAME file) + Cloudflare DNS-only CNAME → `vectorout.github.io`.
   Only do this deliberately — it changes how the proxy must be configured.
 
-## POST-LAUNCH SEO
+## POST-LAUNCH SEO / AEO
 
-1. **Google Search Console**: add twr.coach (domain property), submit
+Already wired on-site: `sitemap.xml` (6 URLs, hreflang), `robots.txt` (all
+crawlers + explicit AI-bot welcomes), `llms.txt` (brand facts for AI answer
+engines), full schema graph (LocalBusiness/SportsActivityLocation + founder +
+offers + FAQPage everywhere + VideoObjects + Articles/Breadcrumbs on guides),
+**IndexNow** key at `/b82788173049c0d05dc0a225358ecdf5.txt` (all URLs pinged
+2026-08-05 — re-ping after content changes, one curl; see git history).
+
+Needs an account owner (Marlo/Riwan):
+
+1. **Google Search Console** — add twr.coach (domain property), submit
    `https://twr.coach/sitemap.xml`.
-2. Google **Business Profile** for "Train With Riwan" (service-area business,
+2. **Bing Webmaster Tools** — add twr.coach (fastest: "Import from GSC" after
+   step 1, or DNS verification), submit the same sitemap. IndexNow is already
+   feeding Bing; BWT gives the reporting.
+3. Google **Business Profile** for "Train With Riwan" (service-area business,
    Helsinki) — biggest local-pack lever for "jalkapallovalmentaja helsinki".
-3. Link twr.coach in the TikTok bio (entity loop: site ⇄ TikTok).
+   Bing Places import from GBP afterwards (one click).
+4. Link twr.coach in the TikTok bio (entity loop: site ⇄ TikTok — this is also
+   what teaches AI assistants the brand ⇄ handle connection).
 
 ## Remaining checklist
 

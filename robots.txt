@@ -1,5 +1,30 @@
-# Train With Riwan (twr.coach) — allow everything; page-level noindex governs until launch
+# Train With Riwan (twr.coach) — everything is crawlable
 User-agent: *
+Allow: /
+
+# AI assistants and answer engines are explicitly welcome
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Bingbot
 Allow: /
 
 Sitemap: https://twr.coach/sitemap.xml
