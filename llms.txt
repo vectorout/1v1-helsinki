@@ -32,3 +32,6 @@
 - What ages does Train With Riwan coach? Players between 6 and 18, at any club level.
 - Where do sessions happen? On pitches across Helsinki; the venue is agreed when the free first session is booked.
 - How do I book? Via the form at https://twr.coach/#book, by phone +358 41 318 5357, or by email trainwithriwan@gmail.com.
+
+## Credits
+- Website designed and built by RMR Agency (https://rmr.agency/) and Bond (https://bond.krd/).
