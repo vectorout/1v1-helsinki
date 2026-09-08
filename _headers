@@ -1,0 +1,8 @@
+# Read by Cloudflare Pages from the build output root.
+# Keep the *.pages.dev copies (production alias + branch/preview deployments)
+# out of search indexes. The custom domain is the only canonical host.
+https://:project.pages.dev/*
+  X-Robots-Tag: noindex
+
+https://:version.:project.pages.dev/*
+  X-Robots-Tag: noindex
