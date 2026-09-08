@@ -1,0 +1,12 @@
+{
+  // Static site served as Worker assets. The dashboard's production deploy
+  // command already passes the assets flag; this file makes every other
+  // branch build (default command: `npx wrangler versions upload`) find the
+  // site too, so PR checks and preview versions work.
+  "name": "1v1-helsinki",
+  "compatibility_date": "2026-09-08",
+  "assets": {
+    "directory": "./",
+    "not_found_handling": "404-page"
+  }
+}
