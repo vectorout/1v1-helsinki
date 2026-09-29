@@ -3,15 +3,20 @@
   'use strict';
   var FLIGHT = 650;
   function clampAim(p) { return { x: Math.max(65, Math.min(375, p.x)), y: Math.max(35, Math.min(185, p.y)) }; }
-  function targetAt(ms, shot) { return { x: 220 + Math.sin(ms / 1100 + shot * 1.9) * 78, y: 106 + Math.sin(ms / 1450 + shot * 1.1) * 21, r: 18 - shot * 3 }; }
+  function targetAt(ms, shot, seed) {
+    var phase = (seed || 0) * Math.PI * 2 + shot * 1.9;
+    return { x: 220 + Math.sin(ms / (900 + (seed || 0) * 260) + phase) * 60 + Math.sin(ms / 1600 + phase * 2.3) * 18,
+      y: 106 + Math.sin(ms / 1300 + phase * 1.7) * 19, r: 14 - shot * 2 };
+  }
   function gestureAim(dx, dy) { return Math.hypot(dx, dy) < 8 ? null : clampAim({ x: 220 - dx * 3.2, y: 145 - dy * 1.6 }); }
-  function createRound() {
+  function createRound(random) {
+    random = random || Math.random;
     return {
-      phase: 'idle', shots: 0, score: 0, flight: null,
-      start: function () { this.phase = 'aim'; this.shots = 0; this.score = 0; this.flight = null; },
+      phase: 'idle', shots: 0, score: 0, flight: null, seed: 0,
+      start: function () { this.seed = random(); this.phase = 'aim'; this.shots = 0; this.score = 0; this.flight = null; },
       shoot: function (aim, time, reduced) {
         if (this.phase !== 'aim' || !aim || !Number.isFinite(aim.x) || !Number.isFinite(aim.y)) return null;
-        var target = targetAt(reduced ? 760 : time + FLIGHT, this.shots);
+        var target = targetAt(reduced ? 760 : time + FLIGHT, this.shots, this.seed);
         var end = clampAim(aim), distance = Math.hypot(end.x - target.x, end.y - target.y);
         this.flight = { end: end, target: target, hit: distance <= target.r, distance: distance, started: time };
         this.phase = 'flight'; this.shots += 1; return this.flight;
@@ -72,7 +77,7 @@
   function resetVisual() {
     card.removeAttribute('data-outcome'); flightElapsed=0; setBall(220,299,1,0); shadow.setAttribute('opacity','.25');
     shadow.setAttribute('transform','translate(220 312)'); updateAim({x:220,y:106});
-    setTarget(targetAt(motion.matches?760:elapsed,round.shots));
+    setTarget(targetAt(motion.matches?760:elapsed,round.shots,round.seed));
   }
   function stop() { cancelAnimationFrame(raf); raf=0; last=0; }
   function sync() {
@@ -96,9 +101,9 @@
       var x=u*u*220+2*u*t*(220+(p.x-220)*.6)+t*t*p.x;
       var y=u*u*299+2*u*t*(p.y-15)+t*t*p.y;
       setBall(x,y,1-t*.72,t*210);shadow.setAttribute('transform','translate('+x+' '+(312+(p.y-312)*t)+') scale('+(1-t*.75)+')');
-      setTarget(targetAt(round.flight.started+Math.min(flightElapsed,FLIGHT),round.shots-1));
+      setTarget(targetAt(round.flight.started+Math.min(flightElapsed,FLIGHT),round.shots-1,round.seed));
       if(t===1){finish();return;}
-    }else setTarget(targetAt(elapsed,round.shots));
+    }else setTarget(targetAt(elapsed,round.shots,round.seed));
     raf=requestAnimationFrame(frame);
   }
   function fire(source) {
@@ -164,7 +169,7 @@
   handle.addEventListener('lostpointercapture',function(e){if(drag&&e.pointerId===drag.id)cancelDrag();});
   card.addEventListener('hero-game-visibility',function(e){selected=e.detail.active;if(!selected){if(round.phase==='aim'||round.phase==='flight')paused=true;cancelDrag();tap=null;}paint();sync();});
   document.addEventListener('visibilitychange',function(){cancelDrag();sync();});
-  motion.addEventListener('change',function(){cancelDrag();if(motion.matches){paused=false;if(round.phase==='flight')finish();}if(round.phase==='aim')setTarget(targetAt(motion.matches?760:elapsed,round.shots));paint();sync();});
+  motion.addEventListener('change',function(){cancelDrag();if(motion.matches){paused=false;if(round.phase==='flight')finish();}if(round.phase==='aim')setTarget(targetAt(motion.matches?760:elapsed,round.shots,round.seed));paint();sync();});
   if('IntersectionObserver'in window)new IntersectionObserver(function(entries){visible=entries[0].isIntersecting;if(!visible)cancelDrag();sync();},{threshold:.1}).observe(card);
   window.addEventListener('pagehide',function(){cancelDrag();stop();});window.addEventListener('pageshow',sync);
   status.textContent=motion.matches?w.static:w.idle;resetVisual();paint();card.classList.add('is-ready');card.closest('.hero').classList.add('has-hero-game');
