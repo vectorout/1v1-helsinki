@@ -3,3 +3,7 @@
 .assetsignore
 wrangler.jsonc
 README.md
+scripts
+docs
+AGENTS.md
+.wrangler
