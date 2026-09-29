@@ -26,6 +26,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/hero-game.css">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -181,6 +182,7 @@
       <div class="hero-glow" aria-hidden="true"></div>
 
       <div class="container hero-inner">
+        <div class="hero-copy">
         <p class="eyebrow" data-fade>Private 1v1 football coaching — Helsinki</p>
         <h1 class="hero-title">
           <span class="line"><span class="line-inner">Give me</span></span>
@@ -192,6 +194,44 @@
           <a class="btn btn-volt" href="#book">Claim your free session</a>
           <a class="btn btn-ghost" href="#method">See the method</a>
         </div>
+        </div>
+        <aside class="hero-game" data-hero-game aria-labelledby="hero-game-title">
+          <div class="hg-heading"><p class="hg-kicker">The three-shot challenge</p><span class="hg-number" aria-hidden="true">01 — 03</span></div>
+          <h2 id="hero-game-title">Pick your corner.</h2>
+          <div class="hg-field">
+            <svg class="hg-art" viewBox="0 0 440 330" fill="none" aria-hidden="true">
+              <defs><pattern id="hg-net" width="18" height="16" patternUnits="userSpaceOnUse"><path d="M18 0H0V16" stroke="#C6FF3A" stroke-opacity=".16" stroke-width=".8"/></pattern><linearGradient id="hg-turf" x1="220" y1="180" x2="220" y2="330" gradientUnits="userSpaceOnUse"><stop stop-color="#C6FF3A" stop-opacity=".045"/><stop offset="1" stop-color="#C6FF3A" stop-opacity="0"/></linearGradient></defs>
+              <path d="M75 193H365L432 328H8Z" fill="url(#hg-turf)"/>
+              <g stroke="#C6FF3A" stroke-opacity=".18"><path d="M76 194L4 330M364 194L436 330M28 288H412M134 194L108 241H332L306 194"/><ellipse cx="220" cy="288" rx="53" ry="13"/><path d="M220 308V327" stroke-dasharray="3 6"/></g>
+              <path d="M65 58L83 42H357L375 58V194H65Z" fill="url(#hg-net)"/>
+              <path d="M65 194V58H375V194M65 58L83 42H357L375 58M83 42V177H357V42M65 194L83 177M375 194L357 177" stroke="#E9EEE0" stroke-opacity=".5" stroke-width="1.5" stroke-linejoin="round"/>
+              <path d="M65 194H375" stroke="#C6FF3A" stroke-opacity=".4"/>
+              <ellipse cx="220" cy="301" rx="20" ry="4" fill="#C6FF3A" opacity=".1"/>
+              <g data-keeper transform="translate(220 0)">
+                <ellipse cx="0" cy="188" rx="28" ry="5" fill="#000" opacity=".4"/>
+                <circle cx="0" cy="111" r="9" fill="#E9EEE0"/>
+                <path d="M-10 127L-29 139L-40 127M10 127L29 139L40 127" stroke="#C6FF3A" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M-10 126H10L14 155H-14Z" fill="#C6FF3A"/>
+                <path d="M-8 157L-17 180M8 157L17 180" stroke="#E9EEE0" stroke-width="8" stroke-linecap="round"/>
+                <path d="M-24 184H-14M14 184H24" stroke="#C6FF3A" stroke-width="5" stroke-linecap="round"/>
+                <circle cx="-41" cy="124" r="5" fill="#E9EEE0"/><circle cx="41" cy="124" r="5" fill="#E9EEE0"/>
+              </g>
+              <path data-trail stroke="#C6FF3A" stroke-width="2" stroke-dasharray="4 5" opacity=".7"/>
+              <g data-ball transform="translate(220 292)"><circle r="12" fill="#F4F4F0"/><path d="M-3-5L4-5L7 1L2 6L-5 3Z" fill="#151A10"/><path d="M-9-8L-3-5M10-6L4-5M10 7L7 1M-2 12L2 6M-12 2L-5 3" stroke="#151A10" stroke-width="1.5"/></g>
+            </svg>
+            <div class="hg-targets" role="group" aria-label="Choose a corner to shoot">
+              <button class="hg-target hg-target-tl" type="button" data-corner="tl" aria-label="Top left" disabled><span aria-hidden="true">↖</span></button>
+              <button class="hg-target hg-target-tr" type="button" data-corner="tr" aria-label="Top right" disabled><span aria-hidden="true">↗</span></button>
+              <button class="hg-target hg-target-bl" type="button" data-corner="bl" aria-label="Bottom left" disabled><span aria-hidden="true">↙</span></button>
+              <button class="hg-target hg-target-br" type="button" data-corner="br" aria-label="Bottom right" disabled><span aria-hidden="true">↘</span></button>
+            </div>
+            <span class="hg-field-note" aria-hidden="true">1V1 / HELSINKI</span>
+          </div>
+          <div class="hg-scoreline"><span data-game-count>Ready</span><span class="hg-dots" aria-hidden="true"><i data-shot-dot>○</i><i data-shot-dot>○</i><i data-shot-dot>○</i></span></div>
+          <p class="hg-status" data-game-status role="status" aria-live="polite" aria-atomic="true">Three shots. Find the open corner.</p>
+          <div class="hg-controls"><button class="hg-action" type="button" data-game-action>Start challenge</button><button class="hg-pause" type="button" data-game-pause hidden>Pause</button><a class="hg-book" href="#book">Try it on the pitch →</a></div>
+          <noscript><a class="hg-fallback" href="#book">Book your free session →</a></noscript>
+        </aside>
       </div>
 
       <div class="hero-foot" data-fade>
@@ -459,5 +499,6 @@
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.4/dist/lenis.min.js"></script>
   <script src="js/main.js"></script>
+  <script src="js/hero-game.js" defer></script>
 </body>
 </html>
