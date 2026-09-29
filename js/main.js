@@ -99,6 +99,7 @@
   var ttModal = document.querySelector(".tt-modal");
   if (ttModal) {
     var ttPlayer = ttModal.querySelector(".tt-player");
+    var ttSource = ttModal.querySelector(".tt-source");
     var ttOpener = null;
 
     var ttClose = function () {
@@ -111,8 +112,10 @@
 
     document.querySelectorAll(".tile-media[data-tiktok-id]").forEach(function (a) {
       a.addEventListener("click", function (e) {
+        if (e.ctrlKey || e.metaKey || e.shiftKey || e.altKey) return;
         e.preventDefault();
         ttOpener = a;
+        ttSource.href = a.href;
         var iframe = document.createElement("iframe");
         iframe.src = "https://www.tiktok.com/embed/v2/" + a.getAttribute("data-tiktok-id");
         iframe.allow = "autoplay; encrypted-media; fullscreen; picture-in-picture";
@@ -132,7 +135,27 @@
       el.addEventListener("click", ttClose);
     });
     document.addEventListener("keydown", function (e) {
-      if (e.key === "Escape" && !ttModal.hidden) ttClose();
+      if (ttModal.hidden) return;
+      if (e.key === "Escape") ttClose();
+      if (e.key === "Tab") {
+        var controls = ttModal.querySelectorAll("iframe, a[href], button");
+        var first = controls[0];
+        var last = controls[controls.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
+    });
+    // Keep focus inside the overlay when leaving the cross-origin player.
+    // Keyboard events inside TikTok's iframe cannot be handled by this page.
+    document.addEventListener("focusin", function (e) {
+      if (!ttModal.hidden && !ttModal.contains(e.target)) {
+        ttModal.querySelector(".tt-close").focus();
+      }
     });
   }
 

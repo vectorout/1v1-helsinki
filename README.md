@@ -1,88 +1,75 @@
 # Train With Riwan — twr.coach
 
-Scroll-animated bilingual one-pager for Coach Riwan's private 1v1 football
-coaching in Helsinki ([@trainwithriwan](https://www.tiktok.com/@trainwithriwan)).
-Free-first-session funnel: hero promise → method → TikTok proof → booking form.
+Bilingual site for Coach Riwan's private football training for young players in
+Helsinki and Espoo. English: https://twr.coach/ · Finnish: https://twr.coach/fi/.
+Website by [Keybridge](https://keybridge.krd/).
 
-Built by [RMR Agency](https://rmr.agency). Preview: https://vectorout.github.io/1v1-helsinki/ (EN) · [/fi/](https://vectorout.github.io/1v1-helsinki/fi/) (FI).
+## Stack and local preview
 
-## Stack
-
-Static site, no build step. GSAP 3 + ScrollTrigger (pinned horizontal "method"
-section, scrubbed word reveal, counters, TikTok tile cascade) and Lenis smooth
-scroll, all via CDN. Fonts: Anton + Archivo. TikTok clips are click-to-play
-facades — self-hosted thumbs in `assets/tiktok/`, iframe loads only on click.
-
-## Run locally
+Static HTML/CSS/JavaScript with no build step. GSAP 3, ScrollTrigger and Lenis
+provide the existing scroll animations. Fonts: Anton and Archivo. Six TikTok
+clips use local thumbnails; the selected iframe loads only after a click. Each
+player also links directly to the selected TikTok video if embedding is blocked.
 
 ```bash
 python3 -m http.server 4173
 ```
 
-## SEO targeting
+## Validation
 
-- **FI (primary):** yksityinen jalkapallovalmentaja · jalkapallon taitovalmennus ·
-  jalkapallovalmennus nuorille / junioreille · Helsinki. Carried by the FI title,
-  description, FAQ (incl. the ages question), schema `knowsAbout`, footer line.
-- **EN (expat parents):** private football coach Helsinki · 1-on-1 football
-  coaching for young players.
-- Entity wiring: `LocalBusiness`+`SportsActivityLocation` with founder Person
-  "Coach Riwan", `sameAs` → TikTok, 6 `VideoObject`s per language, FAQ schema
-  mirroring on-page text exactly, hreflang en/fi/x-default, canonical → twr.coach.
+```bash
+python3 scripts/check_site.py
+node --check js/main.js
+```
 
-## DOMAIN STATUS (launched 2026-08-04)
+The dependency-free check validates all six content pages: shared site identity
+and credit, visible FAQ/schema parity, matching EN/FI video selections and source
+links, local thumbnails, and readable counters when JavaScript is unavailable.
 
-twr.coach is live via a **Cloudflare proxy** in front of the GitHub Pages
-origin (Pages itself has no custom domain configured — the proxy rewrites
-host/path). All paths verified serving: `/`, `/fi/`, assets, robots, sitemap,
-404s. `noindex` removed from both pages the same day.
+## Deployment
 
-Caveats of the proxy setup:
-- Content updates pass through Cloudflare's cache (`max-age=0, must-revalidate`
-  → normally instant; if a deploy looks stale, purge cache in Cloudflare).
-- Optional cleaner alternative: set the custom domain in GitHub Pages
-  (creates CNAME file) + Cloudflare DNS-only CNAME → `vectorout.github.io`.
-  Only do this deliberately — it changes how the proxy must be configured.
+`wrangler.jsonc` configures the `1v1-helsinki` Cloudflare Worker to serve this
+folder as static assets, including the existing 404 page. This replaces the old
+README's GitHub Pages proxy instructions. The dashboard's deployment settings
+and production routing must be checked there before changing infrastructure.
+`.assetsignore` keeps Git/config files, this README, validation scripts and
+maintenance review/source notes out of uploaded Worker assets.
 
-## POST-LAUNCH SEO / AEO
+## Search and answer-engine content
 
-Already wired on-site: `sitemap.xml` (6 URLs, hreflang), `robots.txt` (all
-crawlers + explicit AI-bot welcomes), `llms.txt` (brand facts for AI answer
-engines), full schema graph (LocalBusiness/SportsActivityLocation + founder +
-offers + FAQPage everywhere + VideoObjects + Articles/Breadcrumbs on guides),
-**IndexNow** key at `/b82788173049c0d05dc0a225358ecdf5.txt` (all URLs pinged
-2026-08-05 — re-ping after content changes, one curl; see git history).
+- FI: jalkapallon yksilövalmennus, yksityinen jalkapallovalmennus and
+  jalkapallon taitovalmennus for young players in Helsinki and Espoo.
+- EN: private football training and 1-on-1 coaching for ages 6–18.
+- Shared `WebSite` and coach identities, localized visible service summaries,
+  FAQ schema matching the page, canonical URLs and en/fi/x-default hreflang.
+- Four existing guides, six-URL sitemap, robots.txt and llms.txt remain in place.
+- The homepage video gallery is an `ItemList` of the visible TikTok sources.
+  It is a coaching/booking page, not a dedicated video watch page. No video
+  indexing or rich-result eligibility is claimed. TikTok oEmbed verified the
+  selected author, titles and thumbnails but did not supply publication dates;
+  no upload dates have been invented or carried over from the previous clips.
 
-Needs an account owner (Marlo/Riwan):
+## Editing rules
 
-1. **Google Search Console** — add twr.coach (domain property), submit
-   `https://twr.coach/sitemap.xml`.
-2. **Bing Webmaster Tools** — add twr.coach (fastest: "Import from GSC" after
-   step 1, or DNS verification), submit the same sitemap. IndexNow is already
-   feeding Bing; BWT gives the reporting.
-3. Google **Business Profile** for "Train With Riwan" (service-area business,
-   Helsinki) — biggest local-pack lever for "jalkapallovalmentaja helsinki".
-   Bing Places import from GBP afterwards (one click).
-4. Link twr.coach in the TikTok bio (entity loop: site ⇄ TikTok — this is also
-   what teaches AI assistants the brand ⇄ handle connection).
+Update both homepages when changing service facts or gallery clips. Any FAQ edit
+must also update the matching FAQPage block word for word. Keep shared `WebSite`
+languages as `["en", "fi"]` and the coach ID as `https://twr.coach/#coach`.
 
-## Remaining checklist
+To refresh a gallery clip, verify it belongs to @trainwithriwan, download its
+thumbnail from TikTok oEmbed (the remote links expire), and update the source
+link, `data-tiktok-id`, image, caption and ItemList on both homepages. Use a new
+ID-named asset; the older `t1.jpg`–`t6.jpg` files may still serve social metadata.
+Record sources in `docs/`, which is excluded from Worker assets. This public
+repository and its legacy GitHub Pages build do not provide private storage.
 
-- [ ] **Form endpoint** — create a [Formspree](https://formspree.io) form (use
-  trainwithriwan@gmail.com), put the ID in `FORM_ENDPOINT` in `js/main.js`
-- [ ] **Coach reviews FI copy** — headlines use spoken register ("Anna mulle",
-  "Susta tulee") on purpose
-- [ ] **Verify claims** — "100% of trial players stayed 3+ months" and "reply
-  within 48 h" are the coach's claims; confirm before indexing
-- [ ] **og:image** — currently the night-session TikTok thumb (vertical); replace
-  with a 1200×630 action shot when one exists
-- [x] Media — 6 TikTok facades; to swap a clip: link + `data-tiktok-id` in BOTH
-  html files, fresh thumb via `https://www.tiktok.com/oembed?url=<video url>`
-  (thumb links expire — download, never hotlink), update both VideoObject blocks
-- [x] Phone/email wired: +358 41 318 5357 · trainwithriwan@gmail.com
+## Existing operational details
 
-## Editing rule
+The booking form uses Web3Forms in `js/main.js`; keep the endpoint, form fields
+and submission behavior intact. Contact: +358 41 318 5357 ·
+trainwithriwan@gmail.com. No live form submission is needed for routine QA.
 
-Copy changes go in **both** `index.html` and `fi/index.html`, and any FAQ change
-must also update the matching FAQPage schema block in the same file — schema and
-on-page text must stay word-for-word identical.
+The existing €400/eight-session offer, free first session, retention claims,
+coach biography and 48-hour response commitment remain coach-supplied facts;
+this refresh does not independently revalidate them. The social preview image
+remains the existing night-session thumbnail until a suitable branded landscape
+image is available.
