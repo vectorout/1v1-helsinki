@@ -253,7 +253,9 @@
           <a class="btn btn-ghost" href="#method">Tutustu treeneihin</a>
         </div>
         </div>
-        <aside class="hero-game" data-hero-game aria-labelledby="hero-game-title">
+        <div class="hero-games" data-hero-games>
+        <div class="hg-tabs" role="tablist" aria-label="Valitse peli" hidden><button class="hg-tab" type="button" role="tab" id="game-tab-shooting" aria-controls="game-panel-shooting" aria-selected="true" tabindex="0">Tarkkuus</button><button class="hg-tab" type="button" role="tab" id="game-tab-dribbling" aria-controls="game-panel-dribbling" aria-selected="false" tabindex="-1">Kuljetus</button><button class="hg-tab" type="button" role="tab" id="game-tab-reactions" aria-controls="game-panel-reactions" aria-selected="false" tabindex="-1">Reaktio</button></div>
+        <aside class="hero-game" data-hero-game data-game-panel="shooting" id="game-panel-shooting" role="tabpanel" aria-labelledby="game-tab-shooting">
           <div class="hg-heading"><p class="hg-kicker">Kolme laukausta</p><span class="hg-number" aria-hidden="true">1V1 / HELSINKI</span></div>
           <h2 id="hero-game-title">Osu kohteeseen.</h2>
           <div class="hg-field" data-game-field tabindex="-1" role="group" aria-label="Tähtää maaliin nuolinäppäimillä ja laukaise Enterillä" aria-describedby="hero-game-status">
@@ -281,6 +283,31 @@
           <div class="hg-controls"><div class="hg-play-controls"><button class="hg-action" type="button" data-game-action>Aloita</button><button class="hg-action hg-shoot" type="button" data-game-shoot hidden>Laukaise</button><button class="hg-pause" type="button" data-game-pause hidden>Tauko</button></div><a class="hg-book" href="#book">Kokeile kentällä →</a></div>
           <noscript><a class="hg-fallback" href="#book">Varaa ilmainen treeni →</a></noscript>
         </aside>
+        <section class="hero-game hgm-game" data-game-panel="dribbling" id="game-panel-dribbling" role="tabpanel" aria-labelledby="game-tab-dribbling" hidden>
+          <div class="hg-heading"><p class="hg-kicker">Kahdeksan porttia</p><span class="hg-number" aria-hidden="true">1V1 / HELSINKI</span></div>
+          <h2>Löydä reitti.</h2>
+          <div class="hgm-field hgd-field" data-mini-field tabindex="0" role="group" aria-label="Ohjaa palloa vasemmalla ja oikealla nuolinäppäimellä" aria-describedby="dribbling-status">
+            <svg class="hgm-art" viewBox="0 0 440 350" fill="none" aria-hidden="true">
+              <path d="M34 18H406V329H34Z" fill="#C6FF3A" fill-opacity=".025" stroke="#F4F4F0" stroke-opacity=".19"/>
+              <path d="M34 173H406M148 18V66H292V18M148 329V281H292V329" stroke="#F4F4F0" stroke-opacity=".13"/><circle cx="220" cy="173" r="45" stroke="#F4F4F0" stroke-opacity=".13"/>
+              <g data-dribble-gate transform="translate(0 60)"><g data-cone transform="translate(130 0)"><path d="M-12 10L0-15L12 10Z" fill="#C6FF3A" fill-opacity=".75"/><path d="M-17 13H17M-6 0H6" stroke="#C6FF3A" stroke-width="2"/></g><g data-cone transform="translate(310 0)"><path d="M-12 10L0-15L12 10Z" fill="#C6FF3A" fill-opacity=".75"/><path d="M-17 13H17M-6 0H6" stroke="#C6FF3A" stroke-width="2"/></g></g>
+              <g data-dribble-ball transform="translate(220 280)"><ellipse cy="7" rx="23" ry="7" fill="#000" opacity=".3"/><circle r="19" fill="#e7e9e0"/><path d="M-5-8L5-8L10 1L2 9L-8 4Z" fill="#192014"/><path d="M-14-13L-5-8M15-9L5-8M15 11L10 1M-4 18L2 9M-18 2L-8 4" stroke="#263020" stroke-width="1.6"/><circle r="18.5" stroke="#fff" stroke-opacity=".5"/></g>
+            </svg>
+            <button class="hgd-handle" data-dribble-handle type="button" disabled aria-label="Ohjaa palloa vetämällä tai nuolinäppäimillä"></button>
+          </div>
+          <div class="hg-scoreline"><span data-mini-count></span><span data-mini-score></span></div>
+          <p class="hg-status" id="dribbling-status" data-mini-status role="status" aria-live="polite" aria-atomic="true">Ohjaa pallo kartioiden välistä. Vedä palloa, napauta kenttää tai käytä nuolia.</p>
+          <div class="hg-controls"><div class="hg-play-controls"><button class="hg-action" data-mini-action type="button">Aloita</button><button class="hg-pause" data-mini-pause type="button" hidden>Tauko</button></div><a class="hg-book" href="#book">Kokeile kentällä →</a></div>
+        </section>
+        <section class="hero-game hgm-game" data-game-panel="reactions" id="game-panel-reactions" role="tabpanel" aria-labelledby="game-tab-reactions" hidden>
+          <div class="hg-heading"><p class="hg-kicker">Kymmenen vuoroa</p><span class="hg-number" aria-hidden="true">1V1 / HELSINKI</span></div>
+          <h2>Reagoi palloon.</h2>
+          <div class="hgm-field hgr-field" data-mini-field role="group" aria-describedby="reactions-status" aria-label="Napauta korostettua palloa"><button class="hgr-target" type="button" data-reaction-target="0" aria-label="Pallo 1" disabled><svg viewBox="0 0 80 80" fill="none" aria-hidden="true"><circle class="hgr-ring" cx="40" cy="40" r="35"/><g transform="translate(40 40) scale(1.35)"><circle r="19" fill="#e7e9e0"/><path d="M-5-8L5-8L10 1L2 9L-8 4Z" fill="#192014"/><path d="M-14-13L-5-8M15-9L5-8M15 11L10 1M-4 18L2 9M-18 2L-8 4" stroke="#263020" stroke-width="1.6"/><circle r="18.5" stroke="#fff" stroke-opacity=".5"/></g><path class="hgr-cue" d="M33 7L40 13L47 7" stroke="#C6FF3A" stroke-width="2"/></svg></button><button class="hgr-target" type="button" data-reaction-target="1" aria-label="Pallo 2" disabled><svg viewBox="0 0 80 80" fill="none" aria-hidden="true"><circle class="hgr-ring" cx="40" cy="40" r="35"/><g transform="translate(40 40) scale(1.35)"><circle r="19" fill="#e7e9e0"/><path d="M-5-8L5-8L10 1L2 9L-8 4Z" fill="#192014"/><path d="M-14-13L-5-8M15-9L5-8M15 11L10 1M-4 18L2 9M-18 2L-8 4" stroke="#263020" stroke-width="1.6"/><circle r="18.5" stroke="#fff" stroke-opacity=".5"/></g><path class="hgr-cue" d="M33 7L40 13L47 7" stroke="#C6FF3A" stroke-width="2"/></svg></button><button class="hgr-target" type="button" data-reaction-target="2" aria-label="Pallo 3" disabled><svg viewBox="0 0 80 80" fill="none" aria-hidden="true"><circle class="hgr-ring" cx="40" cy="40" r="35"/><g transform="translate(40 40) scale(1.35)"><circle r="19" fill="#e7e9e0"/><path d="M-5-8L5-8L10 1L2 9L-8 4Z" fill="#192014"/><path d="M-14-13L-5-8M15-9L5-8M15 11L10 1M-4 18L2 9M-18 2L-8 4" stroke="#263020" stroke-width="1.6"/><circle r="18.5" stroke="#fff" stroke-opacity=".5"/></g><path class="hgr-cue" d="M33 7L40 13L47 7" stroke="#C6FF3A" stroke-width="2"/></svg></button><button class="hgr-target" type="button" data-reaction-target="3" aria-label="Pallo 4" disabled><svg viewBox="0 0 80 80" fill="none" aria-hidden="true"><circle class="hgr-ring" cx="40" cy="40" r="35"/><g transform="translate(40 40) scale(1.35)"><circle r="19" fill="#e7e9e0"/><path d="M-5-8L5-8L10 1L2 9L-8 4Z" fill="#192014"/><path d="M-14-13L-5-8M15-9L5-8M15 11L10 1M-4 18L2 9M-18 2L-8 4" stroke="#263020" stroke-width="1.6"/><circle r="18.5" stroke="#fff" stroke-opacity=".5"/></g><path class="hgr-cue" d="M33 7L40 13L47 7" stroke="#C6FF3A" stroke-width="2"/></svg></button><button class="hgr-target" type="button" data-reaction-target="4" aria-label="Pallo 5" disabled><svg viewBox="0 0 80 80" fill="none" aria-hidden="true"><circle class="hgr-ring" cx="40" cy="40" r="35"/><g transform="translate(40 40) scale(1.35)"><circle r="19" fill="#e7e9e0"/><path d="M-5-8L5-8L10 1L2 9L-8 4Z" fill="#192014"/><path d="M-14-13L-5-8M15-9L5-8M15 11L10 1M-4 18L2 9M-18 2L-8 4" stroke="#263020" stroke-width="1.6"/><circle r="18.5" stroke="#fff" stroke-opacity=".5"/></g><path class="hgr-cue" d="M33 7L40 13L47 7" stroke="#C6FF3A" stroke-width="2"/></svg></button><button class="hgr-target" type="button" data-reaction-target="5" aria-label="Pallo 6" disabled><svg viewBox="0 0 80 80" fill="none" aria-hidden="true"><circle class="hgr-ring" cx="40" cy="40" r="35"/><g transform="translate(40 40) scale(1.35)"><circle r="19" fill="#e7e9e0"/><path d="M-5-8L5-8L10 1L2 9L-8 4Z" fill="#192014"/><path d="M-14-13L-5-8M15-9L5-8M15 11L10 1M-4 18L2 9M-18 2L-8 4" stroke="#263020" stroke-width="1.6"/><circle r="18.5" stroke="#fff" stroke-opacity=".5"/></g><path class="hgr-cue" d="M33 7L40 13L47 7" stroke="#C6FF3A" stroke-width="2"/></svg></button></div>
+          <div class="hg-scoreline"><span data-mini-count></span><span data-mini-score></span></div>
+          <p class="hg-status" id="reactions-status" data-mini-status role="status" aria-live="polite" aria-atomic="true">Napauta korostettua palloa ennen kuin kohde vaihtuu. Väärä pallo päättää vuoron.</p>
+          <div class="hg-controls"><div class="hg-play-controls"><button class="hg-action" data-mini-action type="button">Aloita</button><button class="hg-pause" data-mini-pause type="button" hidden>Tauko</button></div><a class="hg-book" href="#book">Kokeile kentällä →</a></div>
+        </section>
+        </div>
       </div>
 
       <div class="hero-foot" data-fade>
@@ -523,5 +550,6 @@
   <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.4/dist/lenis.min.js"></script>
   <script src="../js/main.js"></script>
   <script src="../js/hero-game.js" defer></script>
+  <script src="../js/hero-games.js" defer></script>
 </body>
 </html>
