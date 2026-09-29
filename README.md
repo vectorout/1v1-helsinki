@@ -73,3 +73,23 @@ coach biography and 48-hour response commitment remain coach-supplied facts;
 this refresh does not independently revalidate them. The social preview image
 remains the existing night-session thumbnail until a suitable branded landscape
 image is available.
+
+## Optional hero challenge
+
+The English and Finnish homepages include a three-shot football challenge.
+`css/hero-game.css` and `js/hero-game.js` are isolated from the existing site
+animations and form code. Four native buttons support pointer, touch and
+keyboard play. The game starts on request, pauses offscreen or in hidden tabs,
+and uses a static goalkeeper with immediate feedback for reduced motion.
+Without JavaScript, the illustration and a booking link remain.
+
+The challenge adds no dependencies, sound, network requests, storage or tracking.
+It is an engagement feature, not a measure of football ability or a claimed
+search-ranking factor. Keep the main booking CTA before the game on mobile.
+
+Validate gameplay state separately:
+
+```bash
+node --test scripts/test_hero_game.cjs
+node --check js/hero-game.js
+```

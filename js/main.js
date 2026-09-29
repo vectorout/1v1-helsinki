@@ -213,7 +213,7 @@
     ease: "none",
     scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true }
   });
-  gsap.to(".hero-inner", {
+  gsap.to(".hero-copy", {
     yPercent: -8,
     opacity: 0.25,
     ease: "none",
