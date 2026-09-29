@@ -27,6 +27,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/hero-game.css">
+  <link rel="stylesheet" href="css/hero-fullscreen.css">
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -252,6 +253,7 @@
         </div>
         </div>
         <div class="hero-games" data-hero-games>
+            <div class="hg-expand-row"><button class="hg-expand" type="button" data-game-fullscreen aria-expanded="false" hidden>Full screen</button></div>
         <div class="hg-tabs" role="tablist" aria-label="Choose a game" hidden><button class="hg-tab" type="button" role="tab" id="game-tab-shooting" aria-controls="game-panel-shooting" aria-selected="true" tabindex="0">Shooting</button><button class="hg-tab" type="button" role="tab" id="game-tab-dribbling" aria-controls="game-panel-dribbling" aria-selected="false" tabindex="-1">Dribbling</button><button class="hg-tab" type="button" role="tab" id="game-tab-reactions" aria-controls="game-panel-reactions" aria-selected="false" tabindex="-1">Reactions</button></div>
         <aside class="hero-game" data-hero-game data-game-panel="shooting" id="game-panel-shooting" role="tabpanel" aria-labelledby="game-tab-shooting">
           <div class="hg-heading"><p class="hg-kicker">Three shots</p><span class="hg-number" aria-hidden="true">1V1 / HELSINKI</span></div>
@@ -282,8 +284,9 @@
           <noscript><a class="hg-fallback" href="#book">Book your free session →</a></noscript>
         </aside>
         <section class="hero-game hgm-game" data-game-panel="dribbling" id="game-panel-dribbling" role="tabpanel" aria-labelledby="game-tab-dribbling" hidden>
-          <div class="hg-heading"><p class="hg-kicker">Eight gates</p><span class="hg-number" aria-hidden="true">1V1 / HELSINKI</span></div>
+          <div class="hg-heading"><p class="hg-kicker">Keep it moving</p><span class="hg-number" aria-hidden="true">1V1 / HELSINKI</span></div>
           <h2>Find your way.</h2>
+          <div class="hgm-modes" role="group" aria-label="Difficulty"><button class="hgm-mode" type="button" data-mini-mode="easy" aria-pressed="false">Easy</button><button class="hgm-mode" type="button" data-mini-mode="normal" aria-pressed="true">Normal</button><button class="hgm-mode" type="button" data-mini-mode="hard" aria-pressed="false">Hard</button></div><p class="hgm-mode-note" data-mini-mode-note>Choose before Play.</p>
           <div class="hgm-field hgd-field" data-mini-field tabindex="0" role="group" aria-label="Move the ball with left and right arrow keys" aria-describedby="dribbling-status">
             <svg class="hgm-art" viewBox="0 0 440 350" fill="none" aria-hidden="true">
               <path d="M34 18H406V329H34Z" fill="#C6FF3A" fill-opacity=".025" stroke="#F4F4F0" stroke-opacity=".19"/>
@@ -293,16 +296,17 @@
             </svg>
             <button class="hgd-handle" data-dribble-handle type="button" disabled aria-label="Drag to guide the ball, or use arrow keys"></button>
           </div>
-          <div class="hg-scoreline"><span data-mini-count></span><span data-mini-score></span></div>
-          <p class="hg-status" id="dribbling-status" data-mini-status role="status" aria-live="polite" aria-atomic="true">Guide the ball between the cones. Drag the ball, tap the pitch or use arrow keys.</p>
+          <div class="hg-scoreline hgm-scoreline"><div class="hgm-score"><span>Score</span><strong data-mini-score>0</strong></div><div class="hgm-progress"><span data-mini-count></span><span class="hgm-lives" data-mini-lives><span>Lives</span> <span class="hgm-life-dots" aria-hidden="true"><i>●</i><i>●</i><i>●</i></span></span></div></div>
+          <p class="hg-status" id="dribbling-status" data-mini-status role="status" aria-live="polite" aria-atomic="true">Guide the ball through the gates. Drag, tap or use arrow keys. Three misses end the run. Harder every 10 points.</p>
           <div class="hg-controls"><div class="hg-play-controls"><button class="hg-action" data-mini-action type="button">Play</button><button class="hg-pause" data-mini-pause type="button" hidden>Pause</button></div><a class="hg-book" href="#book">Try it on the pitch →</a></div>
         </section>
         <section class="hero-game hgm-game" data-game-panel="reactions" id="game-panel-reactions" role="tabpanel" aria-labelledby="game-tab-reactions" hidden>
-          <div class="hg-heading"><p class="hg-kicker">Ten turns</p><span class="hg-number" aria-hidden="true">1V1 / HELSINKI</span></div>
+          <div class="hg-heading"><p class="hg-kicker">Stay sharp</p><span class="hg-number" aria-hidden="true">1V1 / HELSINKI</span></div>
           <h2>Read. React.</h2>
+          <div class="hgm-modes" role="group" aria-label="Difficulty"><button class="hgm-mode" type="button" data-mini-mode="easy" aria-pressed="false">Easy</button><button class="hgm-mode" type="button" data-mini-mode="normal" aria-pressed="true">Normal</button><button class="hgm-mode" type="button" data-mini-mode="hard" aria-pressed="false">Hard</button></div><p class="hgm-mode-note" data-mini-mode-note>Choose before Play.</p>
           <div class="hgm-field hgr-field" data-mini-field role="group" aria-describedby="reactions-status" aria-label="Tap the highlighted ball"><button class="hgr-target" type="button" data-reaction-target="0" aria-label="Ball 1" disabled><svg viewBox="0 0 80 80" fill="none" aria-hidden="true"><circle class="hgr-ring" cx="40" cy="40" r="35"/><g transform="translate(40 40) scale(1.35)"><circle r="19" fill="#e7e9e0"/><path d="M-5-8L5-8L10 1L2 9L-8 4Z" fill="#192014"/><path d="M-14-13L-5-8M15-9L5-8M15 11L10 1M-4 18L2 9M-18 2L-8 4" stroke="#263020" stroke-width="1.6"/><circle r="18.5" stroke="#fff" stroke-opacity=".5"/></g><path class="hgr-cue" d="M33 7L40 13L47 7" stroke="#C6FF3A" stroke-width="2"/></svg></button><button class="hgr-target" type="button" data-reaction-target="1" aria-label="Ball 2" disabled><svg viewBox="0 0 80 80" fill="none" aria-hidden="true"><circle class="hgr-ring" cx="40" cy="40" r="35"/><g transform="translate(40 40) scale(1.35)"><circle r="19" fill="#e7e9e0"/><path d="M-5-8L5-8L10 1L2 9L-8 4Z" fill="#192014"/><path d="M-14-13L-5-8M15-9L5-8M15 11L10 1M-4 18L2 9M-18 2L-8 4" stroke="#263020" stroke-width="1.6"/><circle r="18.5" stroke="#fff" stroke-opacity=".5"/></g><path class="hgr-cue" d="M33 7L40 13L47 7" stroke="#C6FF3A" stroke-width="2"/></svg></button><button class="hgr-target" type="button" data-reaction-target="2" aria-label="Ball 3" disabled><svg viewBox="0 0 80 80" fill="none" aria-hidden="true"><circle class="hgr-ring" cx="40" cy="40" r="35"/><g transform="translate(40 40) scale(1.35)"><circle r="19" fill="#e7e9e0"/><path d="M-5-8L5-8L10 1L2 9L-8 4Z" fill="#192014"/><path d="M-14-13L-5-8M15-9L5-8M15 11L10 1M-4 18L2 9M-18 2L-8 4" stroke="#263020" stroke-width="1.6"/><circle r="18.5" stroke="#fff" stroke-opacity=".5"/></g><path class="hgr-cue" d="M33 7L40 13L47 7" stroke="#C6FF3A" stroke-width="2"/></svg></button><button class="hgr-target" type="button" data-reaction-target="3" aria-label="Ball 4" disabled><svg viewBox="0 0 80 80" fill="none" aria-hidden="true"><circle class="hgr-ring" cx="40" cy="40" r="35"/><g transform="translate(40 40) scale(1.35)"><circle r="19" fill="#e7e9e0"/><path d="M-5-8L5-8L10 1L2 9L-8 4Z" fill="#192014"/><path d="M-14-13L-5-8M15-9L5-8M15 11L10 1M-4 18L2 9M-18 2L-8 4" stroke="#263020" stroke-width="1.6"/><circle r="18.5" stroke="#fff" stroke-opacity=".5"/></g><path class="hgr-cue" d="M33 7L40 13L47 7" stroke="#C6FF3A" stroke-width="2"/></svg></button><button class="hgr-target" type="button" data-reaction-target="4" aria-label="Ball 5" disabled><svg viewBox="0 0 80 80" fill="none" aria-hidden="true"><circle class="hgr-ring" cx="40" cy="40" r="35"/><g transform="translate(40 40) scale(1.35)"><circle r="19" fill="#e7e9e0"/><path d="M-5-8L5-8L10 1L2 9L-8 4Z" fill="#192014"/><path d="M-14-13L-5-8M15-9L5-8M15 11L10 1M-4 18L2 9M-18 2L-8 4" stroke="#263020" stroke-width="1.6"/><circle r="18.5" stroke="#fff" stroke-opacity=".5"/></g><path class="hgr-cue" d="M33 7L40 13L47 7" stroke="#C6FF3A" stroke-width="2"/></svg></button><button class="hgr-target" type="button" data-reaction-target="5" aria-label="Ball 6" disabled><svg viewBox="0 0 80 80" fill="none" aria-hidden="true"><circle class="hgr-ring" cx="40" cy="40" r="35"/><g transform="translate(40 40) scale(1.35)"><circle r="19" fill="#e7e9e0"/><path d="M-5-8L5-8L10 1L2 9L-8 4Z" fill="#192014"/><path d="M-14-13L-5-8M15-9L5-8M15 11L10 1M-4 18L2 9M-18 2L-8 4" stroke="#263020" stroke-width="1.6"/><circle r="18.5" stroke="#fff" stroke-opacity=".5"/></g><path class="hgr-cue" d="M33 7L40 13L47 7" stroke="#C6FF3A" stroke-width="2"/></svg></button></div>
-          <div class="hg-scoreline"><span data-mini-count></span><span data-mini-score></span></div>
-          <p class="hg-status" id="reactions-status" data-mini-status role="status" aria-live="polite" aria-atomic="true">Tap the highlighted ball before it moves. A wrong ball ends that turn.</p>
+          <div class="hg-scoreline hgm-scoreline"><div class="hgm-score"><span>Score</span><strong data-mini-score>0</strong></div><div class="hgm-progress"><span data-mini-count></span><span class="hgm-lives" data-mini-lives><span>Lives</span> <span class="hgm-life-dots" aria-hidden="true"><i>●</i><i>●</i><i>●</i></span></span></div></div>
+          <p class="hg-status" id="reactions-status" data-mini-status role="status" aria-live="polite" aria-atomic="true">Tap the highlighted ball in time. Three misses end the run. Harder every 10 points.</p>
           <div class="hg-controls"><div class="hg-play-controls"><button class="hg-action" data-mini-action type="button">Play</button><button class="hg-pause" data-mini-pause type="button" hidden>Pause</button></div><a class="hg-book" href="#book">Try it on the pitch →</a></div>
         </section>
         </div>
@@ -546,5 +550,6 @@
   <script src="js/main.js"></script>
   <script src="js/hero-game.js" defer></script>
   <script src="js/hero-games.js" defer></script>
+  <script src="js/hero-fullscreen.js" defer></script>
 </body>
 </html>

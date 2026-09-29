@@ -102,3 +102,21 @@
 @media(max-width:359px) { .hero-games .hg-controls { align-items:flex-start; }.hero-games .hg-book { flex-basis:100%;margin-left:0; }.hero-games .hero-game { min-height:calc(316px + (100vw - 48px)*.7955); } }
 .hero-games .hg-field { aspect-ratio:440/350; }
 .hero-games .hg-art { display:block;height:100%; }
+
+/* Endless challenges: quiet mode controls and a score readable while playing. */
+.hgm-modes { display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:1rem; }
+.hgm-mode { min-width:0;min-height:44px;padding:8px 4px;border:1px solid var(--line);background:transparent;color:#abb2a1;font:600 .75rem/1.2 var(--font-body);cursor:pointer;touch-action:manipulation; }
+.hgm-mode[aria-pressed="true"] { color:var(--volt);border-color:rgba(198,255,58,.45);background:rgba(198,255,58,.055); }
+.hgm-mode:disabled { cursor:default;color:#838b78; }
+.hgm-mode[aria-pressed="true"]:disabled { color:var(--volt);border-color:rgba(198,255,58,.25); }
+.hgm-mode:focus-visible { outline:2px solid var(--ink);outline-offset:3px; }
+.hgm-mode-note { min-height:1.5em;margin:.4rem 0 .2rem;font-size:.625rem;line-height:1.5;color:#929b86; }
+.hgd-field .hgm-art { overflow:hidden; }
+.hgm-scoreline { align-items:center;min-height:78px; }
+.hgm-score { display:flex;align-items:baseline;gap:12px; }
+.hgm-score strong { font:600 clamp(2.5rem,6vw,3.5rem)/1 var(--font-body);font-variant-numeric:tabular-nums;color:var(--volt); }
+.hgm-progress { display:flex;flex-direction:column;align-items:flex-end;gap:8px; }
+.hgm-lives { display:flex;align-items:center;gap:8px; }
+.hgm-life-dots { display:flex;gap:6px; }
+.hgm-life-dots i { font-style:normal;font-size:.7rem;color:var(--volt); }
+.hgm-life-dots i[data-available="false"] { color:#5b6252; }

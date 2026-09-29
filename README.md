@@ -89,15 +89,38 @@ against their position when the ball arrives, 650ms after launch. The game start
 on request and pauses offscreen or in hidden tabs. Reduced motion uses a static
 target, the same accuracy radius, and immediate feedback. Only the 64px ball
 handle captures touch gestures; the rest of the page scrolls normally.
-Dribbling runs through eight cone gates in roughly 19 seconds. Drag the 64px
-ball handle horizontally, tap the pitch to position it, or use left/right arrow
-keys while the pitch or ball has focus. Initial clearance is about 110px on a
-320px viewport. Misses consume one gate and the round continues. Gaps narrow
-slightly and gates approach faster as the round progresses.
+Shooting targets shrink from 14 to 12 to 10 SVG units. Each new round has a
+randomized, smooth movement path; target display and arrival scoring use the
+same seed.
 
-Reactions presents six stationary football targets. Tap the highlighted ball
-within 1.4 seconds, reducing to 0.815 seconds by turn ten. Wrong taps end the
-current turn; a brief neutral gap between turns prevents duplicate scoring.
+All three games include a Full screen control. Supported browsers use native
+fullscreen; other browsers use a screen-filling modal with a visible exit.
+Escape exits, focus returns to the opener, and booking links exit before
+scrolling to the booking form. No game resets on entering or leaving.
+
+Dribbling and Reactions are continuous score challenges. Select Easy, Normal or
+Hard before Play or after game over. Modes stay locked while playing or paused.
+Every ten correct points increases the level; three misses end a run. Scores can
+continue beyond 100 with no fixed round limit. Try again resets score, level and
+lives while retaining the selected mode.
+
+Dribbling shows a continuous queue of cone gates, spaced 120 SVG units apart.
+Drag the 64px ball handle horizontally, tap the pitch to position it, or use
+left/right arrow keys. Each gate is scored once when it crosses the ball at
+SVG y=280, then travels offscreen and is removed. The full 19-unit ball radius
+must clear the gap. Two to four gate objects stay in memory, with at most an
+84-unit lateral shift between consecutive gates. Normal starts at 115 units/sec
+and a 185-unit gap. At 100 points it reaches about 301 units/sec and an 85-unit
+gap. Easy starts at 90 units/sec and a 210-unit gap; Hard at 145 and 160.
+Speed approaches a bounded maximum of 290/340/390 units/sec and gaps approach
+78/64/58 units for Easy/Normal/Hard. This preserves preview time and ball clearance.
+
+Reactions presents six stationary football targets. Tap the highlighted ball in
+time; a wrong tap or timeout costs one life. Easy/Normal/Hard start with
+1700/1400/1100ms deadlines and approach floors of 550/440/360ms. Normal is about
+608ms at 100 points. A 160/140/120ms neutral interval prevents duplicate scoring.
+Both games use a smooth exponential difficulty curve, updated at each ten-point
+milestone, and continue increasing gradually beyond 100 points.
 Keyboard start places focus in the game. Arrow keys move between reaction
 buttons, and Enter/Space releases a response for the same turn. Pointer gestures
 are bound to their starting turn, so held or secondary touches cannot consume a
