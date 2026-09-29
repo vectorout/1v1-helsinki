@@ -19,9 +19,36 @@ def plain(value):
 pages = [ROOT / 'index.html', ROOT / 'fi/index.html', *sorted((ROOT / 'guides').glob('*/index.html')), *sorted((ROOT / 'fi/oppaat').glob('*/index.html'))]
 check(len(pages) == 6, 'Expected six canonical content pages')
 video_sets = []
+titles = set()
+descriptions = set()
+page_urls = {"https://twr.coach/" + str(p.relative_to(ROOT)).replace("index.html", ""): p for p in pages}
 for path in pages:
     label = str(path.relative_to(ROOT))
     html = path.read_text()
+    url = 'https://twr.coach/' + label.replace('index.html', '')
+    title = re.findall(r'<title>(.*?)</title>', html, re.S)
+    desc = re.findall(r'<meta name="description" content="([^"]+)"', html)
+    canonical = re.findall(r'<link rel="canonical" href="([^"]+)"', html)
+    h1 = re.findall(r'<h1\b[^>]*>(.*?)</h1>', html, re.S)
+    check(len(title) == 1 and bool(plain(title[0])), f'{label}: one nonempty title')
+    check(len(desc) == 1, f'{label}: one description')
+    check(len(h1) == 1 and bool(plain(h1[0])), f'{label}: one nonempty H1')
+    check(canonical == [url], f'{label}: canonical must match route')
+    if title:
+        check(title[0] not in titles, f'{label}: duplicate title')
+        titles.add(title[0])
+    if desc:
+        check(desc[0] not in descriptions, f'{label}: duplicate description')
+        descriptions.add(desc[0])
+    alternates = dict(re.findall(r'<link rel="alternate" hreflang="([^"]+)" href="([^"]+)"', html))
+    check(set(alternates) == {'en', 'fi', 'x-default'}, f'{label}: language alternates missing')
+    check(alternates.get('x-default') == alternates.get('en'), f'{label}: default language route')
+    for lang, target_url in alternates.items():
+        check(target_url in page_urls, f'{label}: alternate route absent: {target_url}')
+        if target_url in page_urls:
+            other = page_urls[target_url].read_text()
+            check('href="' + url + '"' in other, f'{label}: alternate not reciprocal')
+    check('noindex' not in html.lower(), f'{label}: unexpected noindex')
     graphs = [json.loads(s) for s in re.findall(r'<script type="application/ld\+json">(.*?)</script>', html, re.S)]
     nodes = [n for g in graphs for n in g.get('@graph', [g])]
     websites = [n for n in nodes if n.get('@type') == 'WebSite']
@@ -60,4 +87,4 @@ check('scripts' in ignore and 'docs' in ignore, 'Validation scripts and maintena
 if ERRORS:
     print('\n'.join('FAIL: ' + e for e in ERRORS))
     sys.exit(1)
-print(f'PASS: {len(pages)} pages; FAQ/schema parity; shared entities; six matching video facades per language; assets; no-JS counters')
+print(f'PASS: {len(pages)} pages; unique metadata; canonical/hreflang; FAQ/schema parity; shared entities; six matching video facades per language; assets; no-JS counters')

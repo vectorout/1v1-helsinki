@@ -1,38 +1,40 @@
 # Train With Riwan
 
-> Private 1-on-1 football coaching for young players (ages 6–18) in Helsinki and Espoo, Finland. Run by Coach Riwan (@trainwithriwan on TikTok). The first training session is always free.
+> Private football coaching for players aged 6–18 in Helsinki and Espoo, Finland. Sessions are led by Coach Riwan. The first session is free.
 
-## Key facts
+## Coaching and booking
 
-- Service: private 1v1 football training — 1v1 mechanics (feints, exit moves, duel patterns), explosive speed (first-step acceleration, change of direction) and fast footwork under pressure
-- Format: 8 private sessions per month, two per week, in Helsinki and Espoo
-- Price: €400 per month, everything included (≈ €50 per session)
-- Free trial: the first session is completely free, no commitment — every trial player to date has continued training for at least three months
-- Ages: 6–18, from beginners to academy-level juniors; training is built around each player's age and level
-- Coach: Coach Riwan — former academy player whose career was cut short by injuries; coaches the elite 1v1 training he wishes he had received
-- Languages: Finnish and English
-- Area served: Helsinki and Espoo, Finland (Uusimaa)
-- Phone: +358 41 318 5357
-- Email: trainwithriwan@gmail.com
-- Booking: https://twr.coach/#book
-- TikTok (training videos): https://www.tiktok.com/@trainwithriwan
+- Format: one coach and one player, with training adapted to the player's age, experience and goals.
+- Training focus: ball control, first touch, 1v1 moves, acceleration and changes of direction.
+- Monthly package: eight private sessions, usually two sessions a week, for €400.
+- First session: free, with no commitment to continue.
+- Ages: 6–18, including beginners and players who already train with a club.
+- Locations: Helsinki and Espoo. The pitch and time are agreed when booking.
+- Website languages: Finnish and English.
+- Coach: Coach Riwan.
+- Telephone: +358 41 318 5357.
+- Email: trainwithriwan@gmail.com.
+- Booking form: https://twr.coach/#book
+- Finnish booking form: https://twr.coach/fi/#book
+- TikTok: https://www.tiktok.com/@trainwithriwan
 - Instagram: https://www.instagram.com/trainwithriwan/
 
 ## Pages
 
-- [Home — English](https://twr.coach/)
-- [Etusivu — suomeksi](https://twr.coach/fi/)
-- [1-on-1 football training in Helsinki: price, what it includes, how to choose](https://twr.coach/guides/1-on-1-football-training-helsinki/)
-- [Football skills training for kids and teens (6–18)](https://twr.coach/guides/football-training-for-kids-helsinki/)
-- [Yksityinen jalkapallovalmennus Helsingissä: hinta ja valinta](https://twr.coach/fi/oppaat/yksityinen-jalkapallovalmennus-helsinki/)
+- [Private football training in Helsinki and Espoo](https://twr.coach/)
+- [Jalkapallon yksilövalmennus Helsingissä ja Espoossa](https://twr.coach/fi/)
+- [Private football coaching: price and choosing a coach](https://twr.coach/guides/1-on-1-football-training-helsinki/)
+- [Football training for kids and teens](https://twr.coach/guides/football-training-for-kids-helsinki/)
+- [Yksityinen jalkapallovalmennus: hinta ja valmentajan valinta](https://twr.coach/fi/oppaat/yksityinen-jalkapallovalmennus-helsinki/)
 - [Jalkapallon taitovalmennus lapsille ja nuorille](https://twr.coach/fi/oppaat/jalkapallon-taitovalmennus-lapsille/)
 
 ## Common questions
 
-- How much does a private football coach cost in Helsinki? Typically €50–90 per session in the region; Train With Riwan is €400/month for 8 sessions (≈ €50 each), first session free.
-- What ages does Train With Riwan coach? Players between 6 and 18, at any club level.
-- Where do sessions happen? In Helsinki and Espoo; the venue is agreed when the free first session is booked.
-- How do I book? Via the form at https://twr.coach/#book, by phone +358 41 318 5357, or by email trainwithriwan@gmail.com.
+- What does Train With Riwan cost? The monthly package costs €400 for eight private sessions. The first session is free.
+- Who is the coaching for? Players aged 6–18, with sessions adapted to their age, experience and goals.
+- Where are sessions held? In Helsinki and Espoo. The pitch and time are agreed when booking.
+- How do I book? Use the website booking form, call +358 41 318 5357, or email trainwithriwan@gmail.com.
 
 ## Credits
-- Website by Keybridge (https://keybridge.krd/).
+
+- Website by Keybridge: https://keybridge.krd/
