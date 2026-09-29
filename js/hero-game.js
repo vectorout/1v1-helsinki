@@ -46,7 +46,7 @@
   var status = card.querySelector('[data-game-status]'), count = card.querySelector('[data-game-count]');
   var action = card.querySelector('[data-game-action]'), shoot = card.querySelector('[data-game-shoot]'), pause = card.querySelector('[data-game-pause]');
   var dots = Array.from(card.querySelectorAll('[data-shot-dot]'));
-  var aim = {x:220,y:106}, elapsed = 0, flightElapsed = 0, last = 0, raf = 0, paused = false, visible = true;
+  var aim = {x:220,y:106}, elapsed = 0, flightElapsed = 0, last = 0, raf = 0, paused = false, visible = true, selected = true;
   var input = matchMedia('(pointer: coarse)').matches ? 'touch' : 'mouse', drag = null, tap = null, origin = null;
   function setTarget(p) { target.setAttribute('cx',p.x); target.setAttribute('cy',p.y); target.setAttribute('r',p.r); }
   function setBall(x,y,s,angle) { ball.setAttribute('transform','translate('+x+' '+y+') scale('+s+') rotate('+angle+')'); }
@@ -62,7 +62,7 @@
     var active=round.phase==='aim', flying=round.phase==='flight';
     card.dataset.phase=round.phase; card.dataset.input=input; card.dataset.paused=String(paused);
     action.hidden=active||flying; shoot.hidden=!active; shoot.disabled=paused;
-    pause.hidden=(!active&&!flying)||motion.matches; pause.textContent=paused?w.resume:w.pause;
+    pause.hidden=(!active&&!flying); pause.textContent=paused?w.resume:w.pause;
     action.textContent=round.phase==='idle'?w.start:round.phase==='done'?w.replay:w.next;
     handle.disabled=!active||paused; field.tabIndex=active?0:-1;
     count.textContent=round.phase==='idle'?w.ready:w.shot+' '+Math.min(round.shots+(active?1:0),3)+'/3';
@@ -77,7 +77,7 @@
   function stop() { cancelAnimationFrame(raf); raf=0; last=0; }
   function sync() {
     stop();
-    if(!document.hidden&&visible&&!paused&&!motion.matches&&(round.phase==='aim'||round.phase==='flight'))raf=requestAnimationFrame(frame);
+    if(selected&&!document.hidden&&visible&&!paused&&!motion.matches&&(round.phase==='aim'||round.phase==='flight'))raf=requestAnimationFrame(frame);
   }
   function finish() {
     var result=round.finish(); if(!result)return;
@@ -87,10 +87,10 @@
     var feedback=result.hit?w.hit:result.distance<result.target.r*2?w.close:w.miss;
     if(round.shots===3){round.advance();feedback+=' '+w.end(round.score);}
     paint();status.textContent=feedback;stop();
-    if(document.activeElement===origin||document.activeElement===document.body)action.focus({preventScroll:true});
+    if(selected&&!card.hidden&&(document.activeElement===origin||document.activeElement===document.body))action.focus({preventScroll:true});
   }
   function frame(now) {
-    raf=0;var dt=last?Math.min(now-last,50):0;last=now;elapsed+=dt;
+    raf=0;if(!selected||document.hidden||!visible||paused){last=0;return;}var dt=last?Math.min(now-last,50):0;last=now;elapsed+=dt;
     if(round.phase==='flight') {
       flightElapsed+=dt;var t=Math.min(flightElapsed/FLIGHT,1),u=1-t,p=round.flight.end;
       var x=u*u*220+2*u*t*(220+(p.x-220)*.6)+t*t*p.x;
@@ -102,7 +102,7 @@
     raf=requestAnimationFrame(frame);
   }
   function fire(source) {
-    if(paused||round.phase!=='aim'||drag)return;
+    if(!selected||paused||round.phase!=='aim'||drag)return;
     origin=source; if(!round.shoot(aim,elapsed,motion.matches))return;
     flightElapsed=0;paint(); if(motion.matches)finish();else sync();
   }
@@ -162,6 +162,7 @@
   });
   handle.addEventListener('pointercancel',function(e){if(drag&&e.pointerId===drag.id)cancelDrag();});
   handle.addEventListener('lostpointercapture',function(e){if(drag&&e.pointerId===drag.id)cancelDrag();});
+  card.addEventListener('hero-game-visibility',function(e){selected=e.detail.active;if(!selected){if(round.phase==='aim'||round.phase==='flight')paused=true;cancelDrag();tap=null;}paint();sync();});
   document.addEventListener('visibilitychange',function(){cancelDrag();sync();});
   motion.addEventListener('change',function(){cancelDrag();if(motion.matches){paused=false;if(round.phase==='flight')finish();}if(round.phase==='aim')setTarget(targetAt(motion.matches?760:elapsed,round.shots));paint();sync();});
   if('IntersectionObserver'in window)new IntersectionObserver(function(entries){visible=entries[0].isIntersecting;if(!visible)cancelDrag();sync();},{threshold:.1}).observe(card);

@@ -68,16 +68,19 @@ The booking form uses Web3Forms in `js/main.js`; keep the endpoint, form fields
 and submission behavior intact. Contact: +358 41 318 5357 ·
 trainwithriwan@gmail.com. No live form submission is needed for routine QA.
 
-The existing €400/eight-session offer, free first session, retention claims,
-coach biography and 48-hour response commitment remain coach-supplied facts;
-this refresh does not independently revalidate them. The social preview image
+The €400/eight-session offer, free first session and academy/injury biography
+remain client-supplied information. The September copy update removed unsupported
+retention statistics, fixed progress promises, regional price comparisons and the
+48-hour response commitment. The social preview image
 remains the existing night-session thumbnail until a suitable branded landscape
 image is available.
 
-## Optional hero challenge
+## Optional hero games
 
-The English and Finnish homepages include a three-shot football challenge.
-`css/hero-game.css` and `js/hero-game.js` are isolated from the existing site
+The English and Finnish homepages include three optional football games. Shooting
+is selected first. The accessible tab selector adds Dribbling and Reactions;
+arrow keys, Home and End move between tabs. Every game starts only after Play.
+`css/hero-game.css`, `js/hero-game.js` and `js/hero-games.js` are isolated from the existing site
 animations and form code. On desktop, move the pointer to aim and click the pitch
 to shoot. On touchscreens, pull back from the ball and release, or tap the goal
 to aim and use Shoot. Keyboard users can focus the pitch, aim with arrow keys
@@ -86,7 +89,30 @@ against their position when the ball arrives, 650ms after launch. The game start
 on request and pauses offscreen or in hidden tabs. Reduced motion uses a static
 target, the same accuracy radius, and immediate feedback. Only the 64px ball
 handle captures touch gestures; the rest of the page scrolls normally.
-Without JavaScript, the illustration and a booking link remain.
+Dribbling runs through eight cone gates in roughly 19 seconds. Drag the 64px
+ball handle horizontally, tap the pitch to position it, or use left/right arrow
+keys while the pitch or ball has focus. Initial clearance is about 110px on a
+320px viewport. Misses consume one gate and the round continues. Gaps narrow
+slightly and gates approach faster as the round progresses.
+
+Reactions presents six stationary football targets. Tap the highlighted ball
+within 1.4 seconds, reducing to 0.815 seconds by turn ten. Wrong taps end the
+current turn; a brief neutral gap between turns prevents duplicate scoring.
+Keyboard start places focus in the game. Arrow keys move between reaction
+buttons, and Enter/Space releases a response for the same turn. Pointer gestures
+are bound to their starting turn, so held or secondary touches cannot consume a
+later turn. The highlighted target has an
+additional chevron as well as a lime outline. Only end/status text is announced,
+not a rapidly changing countdown. Reduced motion removes decorative animation;
+essential gate travel and reaction timing remain, with Pause always available.
+
+All three games support Pause/Resume. Switching games immediately pauses the
+outgoing round and cancels its frame request; returning offers Resume with the
+same progress. Offscreen, hidden-document and page lifecycle events freeze active
+time. Completed rounds require Try again and never restart automatically. No
+hidden game schedules animation frames or timers. Touch scrolling remains
+available outside each ball handle. Without JavaScript, only the original
+shooting illustration and a booking link remain; the selector stays hidden.
 
 The challenge adds no dependencies, sound, network requests, storage or tracking.
 It is an engagement feature, not a measure of football ability or a claimed
@@ -95,6 +121,7 @@ search-ranking factor. Keep the main booking CTA before the game on mobile.
 Validate gameplay state separately:
 
 ```bash
-node --test scripts/test_hero_game.cjs
+node --test scripts/test_hero_game.cjs scripts/test_hero_games.cjs
 node --check js/hero-game.js
+node --check js/hero-games.js
 ```
