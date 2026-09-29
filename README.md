@@ -78,9 +78,14 @@ image is available.
 
 The English and Finnish homepages include a three-shot football challenge.
 `css/hero-game.css` and `js/hero-game.js` are isolated from the existing site
-animations and form code. Four native buttons support pointer, touch and
-keyboard play. The game starts on request, pauses offscreen or in hidden tabs,
-and uses a static goalkeeper with immediate feedback for reduced motion.
+animations and form code. On desktop, move the pointer to aim and click the pitch
+to shoot. On touchscreens, pull back from the ball and release, or tap the goal
+to aim and use Shoot. Keyboard users can focus the pitch, aim with arrow keys
+and shoot with Enter or Space. Three progressively smaller targets are scored
+against their position when the ball arrives, 650ms after launch. The game starts
+on request and pauses offscreen or in hidden tabs. Reduced motion uses a static
+target, the same accuracy radius, and immediate feedback. Only the 64px ball
+handle captures touch gestures; the rest of the page scrolls normally.
 Without JavaScript, the illustration and a booking link remain.
 
 The challenge adds no dependencies, sound, network requests, storage or tracking.

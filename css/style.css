@@ -852,3 +852,9 @@ a { color: inherit; }
   .scroll-cue i { animation: none; }
   * { transition-duration: 0.01ms !important; }
 }
+
+/* Fit the coach-led headline to its own column in both languages. */
+.hero-copy { container-type: inline-size; }
+.hero .hero-copy .hero-title { font-size: clamp(3rem, 20cqw, 10.5rem); }
+:lang(fi) .hero .hero-copy .hero-title .line:last-child { font-size: .64em; }
+:lang(fi) .hero .hero-copy .hero-stroke { font-size: clamp(1.5rem, 6.8cqw, 2.7rem); line-height: 1.2; }
