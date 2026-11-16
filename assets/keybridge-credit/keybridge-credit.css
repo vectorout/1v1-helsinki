@@ -1,0 +1,9 @@
+/* Keybridge credit v1 — layout-neutral, keyboard accessible, no third-party embeds. */
+.kb-credit{position:relative;display:inline-flex;vertical-align:middle;align-items:center;max-width:100%;direction:inherit}
+.kb-credit-link{display:inline-flex!important;align-items:center;gap:9px!important;min-height:44px;padding:2px 0!important;color:inherit!important;text-decoration:none!important;white-space:nowrap;line-height:1.5!important;transition:opacity .18s ease!important}
+.kb-credit-link:hover{opacity:.85}.kb-credit-label{font-size:13px!important;font-weight:400;letter-spacing:0!important;line-height:1.6!important}.kb-credit-logo{display:block!important;width:34px!important;height:34px!important;min-width:34px;object-fit:contain!important;border-radius:8px!important;margin:0!important;transform:none!important}
+.kb-credit-link:focus-visible{outline:2px solid currentColor!important;outline-offset:5px;border-radius:8px}
+.kb-credit-preview{display:block;position:fixed;z-index:10000;left:var(--kb-preview-left,16px);top:var(--kb-preview-top,16px);width:min(360px,calc(100vw - 32px));padding:0;border-radius:18px;overflow:hidden;background:#102322;box-shadow:0 16px 48px #0005,0 0 0 1px #ffffff24;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .18s ease,visibility .18s ease;direction:ltr}
+.kb-credit-preview>img{display:block!important;width:100%!important;height:auto!important;aspect-ratio:1270/714;object-fit:cover!important;border-radius:18px!important;margin:0!important;transform:none!important;filter:none!important;opacity:1!important}
+.kb-credit.is-open .kb-credit-preview{opacity:1;visibility:visible;pointer-events:auto}
+@media(prefers-reduced-motion:reduce){.kb-credit-preview,.kb-credit-link{transition:none!important}}
